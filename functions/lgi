@@ -1,0 +1,4 @@
+# Link gitignore file
+function lgi() {
+    ln -s ~/.dotfiles/gitignore .gitignore
+}

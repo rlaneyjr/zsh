@@ -1,0 +1,7 @@
+# Setup ssh for me
+
+function sshr() {
+/usr/local/bin/expect << EOF
+source $HOME/scripts/ralssh.exp
+EOF
+}
