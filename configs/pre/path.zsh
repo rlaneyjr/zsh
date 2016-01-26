@@ -1,38 +1,38 @@
-# ensure bin and my scripts directory is loaded first
-export PATH="$HOME/.bin:$HOME/scripts:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/python:/usr/local/bin/python3:/opt/X11/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-
-# load rbenv if available
-if command -v rbenv &>/dev/null ; then
-  eval "$(rbenv init - --no-rehash)"
-fi
-#eval "$(rbenv init - --no-rehash zsh)"
-#eval "$(rbenv init -)"
-# Use these commands to work in different versions of ruby
-# rbenv install 2.1.1
-# rbenv rehash
-# rbenv global 2.1.1
-
-# Node Virtual Machine
-export NVM_DIR="$HOME/.nvm"
-[ -s "$(brew --prefix nvm)/nvm.sh" ] && . $(brew --prefix nvm)/nvm.sh  # This loads nvm
-# Original loader from install
-#. $(brew --prefix nvm)/nvm.sh
-# Old nvm loader
-#[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# mkdir .git/safe in the root of repositories you trust
-export PATH=".git/safe/../../bin:$PATH"
-
-# To use the new coreutils:
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
-#export EDITOR='vim'
-export PYTHONPATH="/usr/bin/python:$PYTHONPATH"
-export MANPATH="/usr/local/man:$MANPATH"
-
-# Java
-#export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"
-export JAVA_HOME="'/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home -v 1.8'"
+## ensure bin and my scripts directory is loaded first
+#export PATH="$HOME/.bin:$HOME/scripts:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/python:/usr/local/bin/python3:/opt/X11/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+#
+## load rbenv if available
+#if command -v rbenv &>/dev/null ; then
+#  eval "$(rbenv init - --no-rehash)"
+#fi
+##eval "$(rbenv init - --no-rehash zsh)"
+##eval "$(rbenv init -)"
+## Use these commands to work in different versions of ruby
+## rbenv install 2.1.1
+## rbenv rehash
+## rbenv global 2.1.1
+#
+## Node Virtual Machine
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$(brew --prefix nvm)/nvm.sh" ] && . $(brew --prefix nvm)/nvm.sh  # This loads nvm
+## Original loader from install
+##. $(brew --prefix nvm)/nvm.sh
+## Old nvm loader
+##[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+#
+## mkdir .git/safe in the root of repositories you trust
+#export PATH=".git/safe/../../bin:$PATH"
+#
+## To use the new coreutils:
+#export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+#
+##export EDITOR='vim'
+#export PYTHONPATH="/usr/bin/python:$PYTHONPATH"
+#export MANPATH="/usr/local/man:$MANPATH"
+#
+## Java
+##export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"
+#export JAVA_HOME="'/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk/Contents/Home -v 1.8'"
 
 
 
