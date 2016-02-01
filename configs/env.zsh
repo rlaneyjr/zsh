@@ -60,7 +60,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 #defaults write org.vim.MacVim MMNativeFullScreen 0
 
 # Tmux HOSTS variable for Multi-SSH script
-export HOSTS='controller01 compute01 compute02 ns2 block01'
+#export HOSTS='controller01 compute01 compute02 ns2 block01'
 
 # Virtual Environment
 export WORKON_HOME=$HOME/.virtualenvs
