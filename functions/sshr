@@ -2,6 +2,6 @@
 
 function sshr() {
 /usr/local/bin/expect << EOF
-source $HOME/scripts/ralssh.exp
+source $HOME/scripts/bin/ralssh.exp
 EOF
 }

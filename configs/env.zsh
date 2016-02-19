@@ -6,6 +6,7 @@ export PATH="$HOME/.bin:$HOME/scripts:/usr/local/bin:/usr/local/sbin:/usr/bin:/b
 
 # load our own completion functions
 fpath=(~/.zsh/completion /usr/local/share/zsh-completions /usr/local/share/zsh/site-functions $fpath)
+eval "$(pandoc --bash-completion)"
 
 # completion
 autoload -U compinit
