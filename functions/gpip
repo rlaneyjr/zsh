@@ -1,0 +1,5 @@
+
+# Install global packages with 'gpip'
+gpip(){
+   PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
+}

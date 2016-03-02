@@ -1,0 +1,5 @@
+
+# Install global packages with 'gpip'
+gpip3(){
+   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
+}
