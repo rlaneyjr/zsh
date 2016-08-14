@@ -1,1 +1,2 @@
-docker exec -it $1 bash
+# Enter bash shell inside docker container
+function docsh() {docker exec -it $1 bash}
