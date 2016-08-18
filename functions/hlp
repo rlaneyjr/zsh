@@ -1,0 +1,2 @@
+# Quick and colorful help
+function hlp() { "$@" --help | less }
