@@ -1,4 +1,4 @@
-# Link gitignore file
-function lgi() {
+# Copy gitignore file
+function cgi() {
     ln -s ~/.dotfiles/gitignore .gitignore
 }
