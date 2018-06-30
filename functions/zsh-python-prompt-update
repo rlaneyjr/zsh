@@ -83,13 +83,15 @@ function _zsh_python_prompt_normal(){
         pytype='system'
     elif [[ $python_path =~ '^/usr/local' ]]; then
         pytype='local'
+    elif [[ $python_path =~ '/.local' ]]; then
+        pytype='user'
     else
         if [ -n "$VIRTUAL_ENV" ]; then
             pytype=$(basename "$VIRTUAL_ENV")
         else
             pytype=$python_path
         fi
-        pytype="!!$pytype"
+        pytype="$pytype"
     fi
 
     zstyle ':zsh-python-prompt:' prompt "$pytype@$pyver"
