@@ -1,3 +1,6 @@
+[submodule "plugins/wd"]
+    path = plugins/wd
+    url = https://github.com/mfaerevaag/wd.git
 [submodule "completion/zsh-completions"]
 	path = completion/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
