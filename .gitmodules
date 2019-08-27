@@ -4,3 +4,6 @@
 [submodule "completion/zsh-completions"]
 	path = completion/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
+[submodule "plugins/tmux-xpanes"]
+	path = plugins/tmux-xpanes
+	url = https://github.com/greymd/tmux-xpanes.git
