@@ -1,9 +1,12 @@
 [submodule "plugins/wd"]
     path = plugins/wd
     url = https://github.com/mfaerevaag/wd.git
-[submodule "completion/zsh-completions"]
-	path = completion/zsh-completions
+[submodule "plugins/zsh-completions"]
+	path = plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
 [submodule "plugins/tmux-xpanes"]
 	path = plugins/tmux-xpanes
 	url = https://github.com/greymd/tmux-xpanes.git
+[submodule "plugins/prezto"]
+	path = plugins/prezto
+	url = https://github.com/sorin-ionescu/prezto.git
