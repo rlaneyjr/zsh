@@ -1,0 +1,181 @@
+#
+# Defines environment variables.
+#
+# Authors:
+#   Ricky Laney <rlaneyjr@gmail.com>
+#
+# ### zshenv
+# 
+# This file is sourced by all instances of Zsh, and thus, it should be kept as
+# small as possible and should only define environment variables.
+########################################
+# The configuration files are read in the following order:
+# 
+#   01. /etc/zshenv
+#   02. ~/.zshenv
+#   03. /etc/zprofile
+#   04. ~/.zprofile
+#   05. /etc/zshrc
+#   06. ~/.zshrc
+#   07. ~/.zpreztorc
+#   08. /etc/zlogin
+#   09. ~/.zlogin
+#   10. ~/.zlogout
+#   11. /etc/zlogout
+########################################
+########## Profiler ###########
+# Credit: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
+
+#PROFILE_STARTUP=true
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    zmodload zsh/zprof # Output load-time statistics
+    # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+    PS4=$'%D{%M%S%.} %N:%i> '
+    exec 3>&2 2>"${XDG_CACHE_HOME:-$HOME/temp}/zsh_startup.$$"
+    setopt xtrace prompt_subst
+fi
+############################################################
+
+# Ensure that a non-login, non-interactive shell has a defined environment.
+if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprofile"
+fi
+
+export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+
+# Must be defined for zsh/complist
+export ZLS_COLORS=${LS_COLORS}
+
+# ranger --copy-config=all
+# Warning: Unable to set locale.  Expect encoding problems.
+# creating: /omd/sites/hts/.config/ranger/rifle.conf
+# creating: /omd/sites/hts/.config/ranger/commands.py
+# creating: /omd/sites/hts/.config/ranger/commands_full.py
+# creating: /omd/sites/hts/.config/ranger/rc.conf
+# creating: /omd/sites/hts/.config/ranger/scope.sh
+# 
+# > Please note that configuration files may change as ranger evolves.
+#   It's completely up to you to keep them up to date.
+# 
+# > To stop ranger from loading both the default and your custom rc.conf,
+#   please set the environment variable RANGER_LOAD_DEFAULT_RC to FALSE.
+export RANGER_LOAD_DEFAULT_RC=FALSE
+
+############################################################
+# Ensure go has it's GOROOT loaded
+typeset -Ug GOPATH
+export GOPATH="$HOME/.go"
+#export GOBIN="$HOME/.go/bin"
+##export PATH="/usr/local/opt/go/libexec/bin:$PATH"
+# Go Code bin commands
+##export PATH="$HOME/.go/bin:$PATH"
+
+############################################################
+# Node Version Manager
+#Add the following to ~/.zshrc or your desired shell
+#configuration file:
+#export NVM_AUTO_USE_ACTIVE=true
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
+
+############################################################
+# node@8 is keg-only, which means it was not symlinked into /usr/local,
+# because this is an alternate version of another formula.
+# 
+# If you need to have node@8 first in your PATH run:
+#   echo 'export PATH="/usr/local/opt/node@8/bin:$PATH"' >> ~/.zshrc
+# 
+# For compilers to find node@8 you may need to set:
+#   export LDFLAGS="-L/usr/local/opt/node@8/lib"
+#   export CPPFLAGS="-I/usr/local/opt/node@8/include"
+# Enable persistent REPL history for `node`.
+export NODE_REPL_HISTORY="$HOME/.node_history"
+# Allow 32³ entries; the default is 1000.
+export NODE_REPL_HISTORY_SIZE="32768"
+# Use sloppy mode by default, matching web browsers.
+export NODE_REPL_MODE="sloppy"
+
+############################################################
+# Atom Environment Variables:
+# The path from which Atom loads source code in dev mode.
+# Defaults to `~/github/atom`.
+export ATOM_DEV_RESOURCE_PATH="$HOME/.atom/dev"
+# The root path for all configuration files and folders.
+# Defaults to `~/.atom`.
+export ATOM_HOME="$HOME/.atom"
+
+############################################################
+# User specified directories.  Can be overriden with local command.
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+############################################################
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '$HOME/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc' ];
+then source '$HOME/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '$HOME/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ];
+then source '$HOME/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'; fi
+
+############################################################
+# Cheats customizations
+#CHEATERS="$HOME/cheaters/cheaters"
+export CHEAT_EDITOR="vim"
+export DEFAULT_CHEAT_DIR="$HOME/.cheat/cheat/cheatsheets"
+#export CHEATPATH="$CHEATERS/CheatenLife:$CHEATERS/CloudLife:$CHEATERS/FlyinLife
+#                 :$CHEATERS/MayccollLife:$CHEATERS/PacketLife:$CHEATERS/PerlLife
+#                 :$CHEATERS/PythonLife:$CHEATERS/VMwareLife"
+export CHEATCOLORS=true
+# Specifying a Syntax Highlighter
+# You may manually specify which syntax highlighter to use for each cheatsheet by wrapping the sheet's contents in a Github-Flavored Markdown code-fence.
+# Example:
+#
+# ```sql
+# -- to select a user by ID
+# SELECT *
+# FROM Users
+# WHERE id = 100
+# ```
+# If no syntax highlighter is specified, the bash highlighter will be used by default.
+
+############################################################
+# Ansible Environment
+#export ANSIBLE_CONFIG=$HOME/Projects/ansible.cfg
+#export ANSIBLE_LIBRARY=$HOME/Projects/ansible-cisco-snmp/library
+
+############################################################
+# Tastedive.com API Access Key
+export TASTE_API_KEY="322428-NetEngOn-CPK7XUTD"
+
+############################################################
+# Pinboard.com API Access Key
+export PINBOARD_TOKEN="rlaney:765D69E427A843DCC53F"
+export PINBOARD_API_KEY="rlaney:765D69E427A843DCC53F"
+
+############################################################
+# If you need to have bzip2 first in your PATH run:
+# export PATH="/usr/local/opt/bzip2/bin:$PATH"
+#
+# # For compilers to find bzip2 you may need to set:
+# export LDFLAGS="-L/usr/local/opt/bzip2/lib"
+# export CPPFLAGS="-I/usr/local/opt/bzip2/include"
+#
+# ############################################################
+# # If you need to have zlib first in your PATH run:
+# export PATH="/usr/local/opt/zlib /bin:$PATH"
+#
+# # For compilers to find zlib you may need to set:
+# export LDFLAGS="-L/usr/local/opt/zlib/lib"
+# export CPPFLAGS="-I/usr/local/opt/zlib/include"
+#
+# # For pkg-config to find zlib you may need to set:
+# export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
+#
+# # For pyenv install command tell pyenv to use brew installed programs and MacOS10.14.sdk
+# export PYTHON_CONFIGURE_OPTS='--enable-framework'
+# export CPPFLAGS='-I/usr/local/opt/zlib/include'
+# export CFLAGS='-O2 -I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include'
+# export LDFLAGS='-L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib'
+# export AR='/usr/bin/ar'

@@ -1,0 +1,38 @@
+#
+# Executes commands at logout.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+# ### zlogout
+# 
+# This file is sourced by login shells during logout. It should be used for
+# displaying messages and the deletion of files.
+########################################
+# The configuration files are read in the following order:
+# 
+#   01. /etc/zshenv
+#   02. ~/.zshenv
+#   03. /etc/zprofile
+#   04. ~/.zprofile
+#   05. /etc/zshrc
+#   06. ~/.zshrc
+#   07. ~/.zpreztorc
+#   08. /etc/zlogin
+#   09. ~/.zlogin
+#   10. ~/.zlogout
+#   11. /etc/zlogout
+########################################
+
+# Execute code only if STDERR is bound to a TTY.
+[[ -o INTERACTIVE && -t 2 ]] && {
+
+SAYINGS=(
+    "So long and thanks for all the fish.\n  -- Douglas Adams"
+    "Good morning! And in case I don't see ya, good afternoon, good evening and goodnight.\n  --Truman Burbank"
+)
+
+# Print a randomly-chosen message:
+echo $SAYINGS[$(($RANDOM % ${#SAYINGS} + 1))]
+
+} >&2

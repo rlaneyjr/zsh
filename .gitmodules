@@ -10,3 +10,15 @@
 [submodule "plugins/prezto"]
 	path = plugins/prezto
 	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "plugins/zsh-python-prompt"]
+	path = plugins/zsh-python-prompt
+	url = https://github.com/yonchu/zsh-python-prompt.git
+	branch = master
+[submodule "plugins/vimman"]
+	path = plugins/vimman
+	url = https://github.com/yonchu/vimman.git
+	branch = master
+[submodule "plugins/prezto-contrib"]
+	path = plugins/prezto-contrib
+	url = https://github.com/belak/prezto-contrib.git
+	branch = master

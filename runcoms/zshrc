@@ -1,0 +1,564 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Ricky Laney <rlaneyjr@gmail.com>
+#
+# ### zshrc
+#
+# This file is sourced by interactive shells. It should define aliases,
+# functions, shell options, and key bindings.
+########################################
+# The configuration files are read in the following order:
+#
+#   01. /etc/zshenv
+#   02. ~/.zshenv
+#   03. /etc/zprofile
+#   04. ~/.zprofile
+#   05. /etc/zshrc
+#   06. ~/.zshrc
+#   07. ~/.zpreztorc
+#   08. /etc/zlogin
+#   09. ~/.zlogin
+#   10. ~/.zlogout
+#   11. /etc/zlogout
+########################################
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+# completion
+# autoload -U compinit -u
+# compinit -u
+
+# autoload -Uz compinit
+# for dump in ~/.zcompdump(N.mh+24); do
+#   compinit
+# done
+# compinit -C
+
+# makes color constants available
+# autoload -U colors
+# colors
+
+# Loading Prompts
+# autoload -U promptinit; promptinit
+
+############################################################
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+export PYTHONIOENCODING='UTF-8';
+typeset -Ug PYTHONPATH
+export PYTHONPATH="$HOME/lib:$PYTHONPATH"
+# Needed before installing Python versions with pyenv for YouCompleteMe
+#export PYTHON_CONFIGURE_OPTS="--enable-framework"
+
+# Virtual Environment
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Projects
+#export VIRTUALENVWRAPPER_PYTHON="$PYENV_ROOT/shims/python"
+#source /usr/local/bin/virtualenvwrapper.sh
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+# Directory to create environment for python3 -m venv
+#export ENV_DIR=$HOME/.virtualenvs
+
+# Pyenv auto-activation
+export PYENV_SHELL="$(which zsh)"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+#export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+pyenv virtualenvwrapper_lazy
+#if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+#export PYENV_DEBUG=1
+#PYENV_ROOT
+#PYENV_SHELL
+#PYENV_VIRTUALENVWRAPPER_PYENV_VERSION
+#PYENV_VIRTUALENV_DISABLE_PROMPT
+#PYENV_VIRTUALENV_INIT
+
+# PIPENV Settings
+# eval "$(pipenv --completion)"
+#export PIPENV_PYTHON=$PYENV_ROOT/shims/python
+# export PIPENV_SHELL="$(which zsh)"
+# export PIPENV_VERBOSITY=-1
+#export PIPENV_NO_INHERIT
+# export PIPENV_VENV_IN_PROJECT=True
+#export PIPENV_VIRTUALENV=$HOME/.virtualenvs
+#export PIPENV_MAX_SUBPROCESS
+#export PIPENV_MAX_RETRIES
+#export PIPENV_USE_SYSTEM
+#export PIPENV_TEST_INDEX
+#export PIPENV_MAX_ROUNDS
+#export PIPENV_USE_HASHES
+#export PIPENV_YES
+#export PIPENV_DONT_USE_PYENV
+#export PIPENV_SKIP_VALIDATION
+# Use this version of Python when creating new virtual environments, by default (e.g. 3.6).
+#export PIPENV_DEFAULT_PYTHON_VERSION
+# Always use fancy mode when invoking pipenv shell.
+# export PIPENV_SHELL_FANCY=1
+# If set, use .venv in your project directory instead of the global virtualenv manager pew.
+#export PIPENV_VENV_IN_PROJECT
+# Disable terminal colors, for some reason.
+#export PIPENV_COLORBLIND
+# Disable terminal spinner, for cleaner logs. Automatically set in CI environments.
+#export PIPENV_NOSPIN
+# Set to an integer for the maximum number of directories to recursively search for a Pipfile.
+#export PIPENV_MAX_DEPTH
+# Set to an integer for the max number of seconds Pipenv will wait for virtualenv creation to complete. Defaults to 120 seconds.
+#export PIPENV_TIMEOUT
+# Set to an integer for the max number of seconds Pipenv will wait for package installation before timing out. Defaults to 900 seconds.
+#export PIPENV_INSTALL_TIMEOUT
+# Set to disable automatically using an activated virtualenv over the current project’s own virtual environment.
+#export PIPENV_IGNORE_VIRTUALENVS
+# When running pipenv from a $PWD other than the same directory where the Pipfile is located, instruct pipenv to find the Pipfile in the location specified by this environment variable.
+#export PIPENV_PIPFILE
+# Location for Pipenv to store it’s package cache.
+#export PIPENV_CACHE_DIR
+# Disable emojis in output.
+#export PIPENV_HIDE_EMOJIS
+# Location for Pipenv to load your project’s .env.
+#export PIPENV_DOTENV_LOCATION
+# Tell Pipenv not to load the .env files automatically.
+#export PIPENV_DONT_LOAD_ENV
+# If you’d like to set these environment variables on a per-project basis, I recommend utilizing the fantastic direnv project, in order to do so.
+# Also note that pip itself supports environment variables, if you need additional customization.
+# For example:
+# $ PIP_INSTALL_OPTION="-- -DCMAKE_BUILD_TYPE=Release" pipenv install -e .
+
+# Powerline setup
+#powerline-daemon -q
+#POWERLINE_SHELL_CONTINUATION=1
+#POWERLINE_SHELL_SELECT=1
+#. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+##############################################
+#		        Custom Config                #
+##############################################
+# Base16 Shell
+#BASE16_SHELL="$HOME/.config/colors/base16-shell/base16-default.dark.sh"
+#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+# Base16 Shell
+#BASE16_SHELL="$HOME/.config/colors/base16-shell/"
+#[ -n "$PS1" ] && \
+#    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+#        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+# Set iterm hostname prior to script to speed-up.
+ITERM2_HOSTNAME='flypro'
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# maintains a jump-list of the directories you actually use
+# Set $_Z_CMD to change the command name (default z).
+# Set $_Z_DATA to change the datafile (default $HOME/.z).
+# Set $_Z_NO_RESOLVE_SYMLINKS to prevent symlink resolution.
+export _Z_NO_RESOLVE_SYMLINKS=true
+# Set $_Z_NO_PROMPT_COMMAND to handle PROMPT_COMMAND/precmd yourself.
+# Set $_Z_EXCLUDE_DIRS to an array of directory trees to exclude.
+# Set $_Z_OWNER to allow usage when in 'sudo -s' mode.
+export _Z_OWNER='rlaney'
+# (These settings should go in .bashrc/.zshrc before the line added above.)
+. /usr/local/etc/profile.d/z.sh
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/rlaney/Library/Caches/heroku/autocomplete/zsh_setup && \
+    test -f $HEROKU_AC_ZSH_SETUP_PATH && \
+    source $HEROKU_AC_ZSH_SETUP_PATH;
+
+# OPAM configuration
+# Otherwise, every time you want to access your opam installation, you will need to run: eval $(opam env)
+#. $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# pandoc completion
+eval $(pandoc --bash-completion)
+
+# pip zsh completion
+eval "`pip completion --zsh`"
+compctl -K _pip_completion pip3
+
+# KubeCTL Completions for ZSH
+source <(kubectl completion zsh)
+source <(helm completion zsh)
+# KubeCTL Completions for BASH
+#source <(kubectl completion bash)
+
+# In zsh*, the following will load openshift cli zsh completion:
+# source <(oc completion zsh)
+
+# Init npx completion
+source <(npx --shell-auto-fallback zsh)
+
+# Initialize jenv Java Manager
+eval "$(jenv init -)"
+
+# Initialize direnv the environment variables manager
+eval "$(direnv hook zsh)"
+
+# Pyenv auto-activation
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+#if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+# AWS-CLI completer
+# if [ -f /usr/local/bin/aws_completer ]; then
+#     source /usr/local/bin/aws_completer;
+# fi
+# if [ -f /usr/local/bin/aws_zsh_completer.sh]; then
+#     source /usr/local/bin/aws_zsh_completer.sh
+# fi
+# if [ -f /usr/local/bin/aws_completer.sh]; then
+#     source /usr/local/bin/aws_completer.sh
+# fi
+
+#Add the following to your ~/.bash_profile:
+#if [ -f /usr/local/share/bash-completion/bash_completion ]; then
+#  . /usr/local/share/bash-completion/bash_completion
+#fi
+
+### Add tab completion for many Bash commands
+##if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
+##	source "$(brew --prefix)/share/bash-completion/bash_completion";
+##elif [ -f /etc/bash_completion ]; then
+##	source /etc/bash_completion;
+##fi;
+##
+### Homebrew completion
+##if type brew &>/dev/null; then
+##  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+##fi
+
+# Brew command-not-found initialization Not needed with zprezto
+#if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
+
+# Enable tab completion for `g` by marking it as an alias for `git`
+if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+	compctl -o default -o nospace -F _git g;
+fi;
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+
+# Make zsh know about hosts already accessed by SSH
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+
+# Add tab completion for `defaults read|write NSGlobalDomain`
+# You could just use `-g` instead, but I like being explicit
+compctl -W "NSGlobalDomain" defaults;
+
+# Add `killall` tab completion for common apps
+compctl -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal iTerm2" killall;
+
+# Increase Bash history size. Allow 32³ entries; the default is 500.
+export HISTSIZE='1000';
+export HISTFILESIZE="${HISTSIZE}";
+# Omit duplicates and commands that begin with a space from history.
+export HISTCONTROL='ignoreboth';
+HISTFILE=$HOME/.zsh_history
+DIRSTACKSIZE=5
+
+setopt complete_aliases
+setopt no_bg_nice
+setopt no_hup
+setopt no_list_beep
+setopt local_options
+setopt local_traps
+#setopt ignore_eof
+
+# vi mode
+setopt vi
+
+# awesome cd movements from zshkit
+setopt autocd autopushd pushdminus pushdsilent pushdtohome cdablevars
+# Alias directories by assigning them to a variable
+#setopt auto_name_dirs
+# This allows us to omit the $ when cding into the directory variable
+#setopt cdable_varS
+
+# ===== Basics
+# don't beep on error
+setopt no_beep
+# Allow comments even in interactive shells (especially for Muness)
+setopt interactive_comments
+
+# ===== Changing Directories
+# If you type foo, and it isn't a command, and it is a directory in your cdpath, go there
+setopt auto_cd
+# if argument to cd is the name of a parameter whose value is a valid directory, it will become the current directory
+setopt cdablevarS
+# don't push multiple copies of the same directory onto the directory stack
+setopt pushd_ignore_dups
+
+# ===== Expansion and Globbing
+# treat #, ~, and ^ as part of patterns for filename generation
+setopt extended_glob
+# Allow [ or ] wherever you want
+unsetopt nomatch
+
+# ===== History
+# Allow multiple terminal sessions to all append to one zsh command history
+setopt append_history
+# save timestamp of command and duration
+setopt extended_history
+# Add comamnds as they are typed, don't wait until shell exit
+setopt inc_append_history
+# when trimming history, lose oldest duplicates first
+setopt hist_expire_dups_first
+# Do not write events to history that are duplicates of previous events
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+# remove command line from history list when first character on the line is a space
+setopt hist_ignore_space
+# When searching history don't display results already cycled through twice
+setopt hist_find_no_dups
+# Remove extra blanks from each command line being added to history
+setopt hist_reduce_blanks
+# don't execute, just expand history
+setopt hist_verify
+# imports new commands and appends typed commands to history
+setopt share_history
+
+# ===== Completion
+# When completing from the middle of a word, move the cursor to the end of the word
+setopt always_to_end
+# show completion menu on successive tab press. needs unsetop menu_complete to work
+setopt auto_menu
+# any parameter that is set to the absolute name of a directory immediately becomes a name for that directory
+setopt auto_name_dirs
+# Allow completion from within a word/phrase
+setopt complete_in_word
+
+# do not autoselect the first completion entry
+unsetopt menu_complete
+
+# ===== Correction
+# spelling correction for arguments
+unsetopt correct_all
+# spelling correction for commands
+setopt correct
+
+# ===== Prompt
+# Enable parameter expansion, command substitution, and arithmetic expansion in the prompt
+#setopt prompt_subst # Make sure prompt is able to be generated properly.
+# only show the rprompt on the current prompt
+#setopt transient_rprompt
+
+# ===== Scripts and Functions
+# perform implicit tees or cats when multiple redirections are attempted
+setopt multios
+
+## why would you type 'cd dir' if you could just type 'dir'?
+#setopt AUTO_CD
+## This makes cd=pushd
+#setopt AUTO_PUSHD
+## This will use named dirs when possible
+#setopt AUTO_NAME_DIRS
+## If we have a glob this will expand it
+#setopt GLOB_COMPLETE
+#setopt PUSHD_MINUS
+## No more annoying pushd messages...
+## setopt PUSHD_SILENT
+## blank pushd goes to home
+#setopt PUSHD_TO_HOME
+## this will ignore multiple directories for the stack.  Useful?  I dunno.
+#setopt PUSHD_IGNORE_DUPS
+#
+## 10 second wait if you do something that will delete everything.  I wish I'd had this before...
+#setopt RM_STAR_WAIT
+## use magic (this is default, but it can't hurt!)
+#setopt ZLE
+#setopt NO_HUP
+#setopt IGNORE_EOF
+## If I could disable Ctrl-s completely I would!
+#setopt NO_FLOW_CONTROL
+## Keep echo "station" > station from clobbering station
+#setopt NO_CLOBBER
+## Case insensitive globbing
+#setopt NO_CASE_GLOB
+## Be Reasonable!
+#setopt NUMERIC_GLOB_SORT
+## I don't know why I never set this before.
+#setopt EXTENDED_GLOB
+## hows about arrays be awesome?  (that is, frew${cool}frew has frew surrounding all the variables, not just first and last
+#setopt RC_EXPAND_PARAM
+## Now we can pipe to multiple outputs!
+#setopt MULTIOS
+
+# vi mode
+bindkey -v
+bindkey "^F" vi-cmd-mode
+bindkey -M vicmd v edit-command-line
+
+# handy keybindings
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+# Who doesn't want home and end to work?
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
+bindkey "^R" history-incremental-search-backward
+bindkey "^P" history-search-backward
+bindkey "^X" kill-line
+bindkey "^Y" accept-and-hold
+bindkey "^N" insert-last-word
+bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
+
+globalias() {
+   zle _expand_alias
+   zle expand-word
+   zle self-insert
+}
+zle -N globalias
+# control-space expands all aliases, including global
+bindkey -M emacs "^ " globalias
+bindkey -M viins "^ " globalias
+# space to make a normal space
+bindkey -M emacs " " magic-space
+bindkey -M viins " " magic-space
+# normal space during searches
+bindkey -M isearch " " magic-space
+# Incremental search is elite!
+bindkey -M vicmd "/" history-incremental-search-backward
+bindkey -M vicmd "?" history-incremental-search-forward
+# Search based on what you typed in already
+bindkey -M vicmd "//" history-beginning-search-backward
+bindkey -M vicmd "??" history-beginning-search-forward
+bindkey "\eOP" run-help
+# oh wow!  This is killer...  try it!
+bindkey -M vicmd "q" push-line
+
+# Fun tetris!
+autoload -U tetris
+zle -N tetris
+bindkey "^Q" tetris
+
+# load custom executable functions
+if [ -f ~/.myshutils ]; then
+   . ~/.myshutils
+fi
+if [ -f ~/.myfuncts ]; then
+   . ~/.myfuncts
+fi
+
+## load custom executable functions
+#for function in ~/.zsh/functions/*; do
+#  source $function
+#done
+
+## load custom executable functions
+#for function in ~/.zsh/completion/*; do
+#  source $function
+#done
+
+# NOT WORKING!!
+#/usr/local/etc/bash_completion.d/doctl:type:4555: bad option: -t
+#WARNING: this script is deprecated, please see git-completion.zsh
+#/usr/local/etc/bash_completion.d/helm:type:1671: bad option: -t
+#/usr/local/etc/bash_completion.d/kubectl:type:7716: bad option: -t
+#/usr/local/etc/bash_completion.d/oc:type:18213: bad option: -t
+#/usr/local/etc/bash_completion.d/openshift:type:785: bad option: -t
+# Adding extra completions manually
+#for f in $(ls -1 /usr/local/etc/bash_completion.d); do
+#    source /usr/local/etc/bash_completion.d/$f;
+#done
+
+# aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
+
+# New Fuzzy Finder from command line
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# New Fuzzy Finder with my custom config
+[ -f ~/.fzf.local ] && source ~/.fzf.local
+
+# Load my private stuff
+[[ -f ~/.ssh/.private ]] && source ~/.ssh/.private
+
+# Create wd command
+wd() {
+    . ~/.zsh/plugins/wd/wd.sh
+}
+
+# (eval):setopt:3: no such option: NO_warnnestedvar
+# fix: (eval):setopt:3: no such option: NO_warnnestedvar
+#_comp_options="${_comp_options/NO_warnnestedvar/}"
+
+# Powerline shell prompt
+# function powerline_precmd() {
+#     PS1="$(powerline-shell --shell zsh $?)"
+# }
+#
+# function install_powerline_precmd() {
+#   for s in "${precmd_functions[@]}"; do
+#     if [ "$s" = "powerline_precmd" ]; then
+#       return
+#     fi
+#   done
+#   precmd_functions+=(powerline_precmd)
+# }
+#
+# if [ "$TERM" != "linux" ]; then
+#     install_powerline_precmd
+# fi
+
+# Setup pyenv custom prompt "zsh-python-prompt"
+source $ZSH_CUSTOM/zshrc.zsh
+RPROMPT+='$ZSH_PYTHON_PROMPT'
+setopt prompt_subst
+#zstyle ':zsh-python-prompt:pyenv:' expire_sec 30
+#zstyle ':zsh-python-prompt:pyenv:' symbol '⌘'
+zstyle ':zsh-python-prompt:pyenv:' symbol '🐍'
+
+# Plugin to read Vim help files
+source $ZSH_CUSTOM/vimman.zsh
+zstyle ':completion:*' use-cache yes
+zstyle ':vimman:' dir ~/.vim/plugged
+zstyle ':vimman:' verbose yes
+zstyle ':vimman:' expire 7
+# Note that if you change the zstyle settings, you should delete the cache file and restart zsh.
+# $ rm ~/.zcompcache/vimman
+# $ exec zsh
+
+############################################################
+#source /usr/local/etc/bash_completion.d/*
+############################################################
+## Start rbenv
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
+
+# Add rbenv to PATH for scripting.
+if [[ -d $HOME/.rbenv/bin ]]; then
+    export PATH="$PATH:$HOME/.rbenv/bin"
+    eval "$(rbenv init -)"
+fi
+
+# Add RVM to PATH for scripting
+if [[ -f $HOME/.rvmrc ]]; then
+    source $HOME/.rvmrc;
+fi
+
+# Load RVM into a shell session *as a function*
+# RVM home scripts completion
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+if [[ -d $HOME/.rvm/bin ]]; then
+    export PATH="$PATH:$HOME/.rvm/bin"
+fi
+
+## The next line updates PATH for the Google Cloud SDK.
+#if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc'; fi
+#
+## The next line enables shell command completion for gcloud.
+#if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'; fi
+
+########### Profiler ###########
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    zprof
+    unsetopt xtrace
+    exec 2>&3 3>&-
+fi
