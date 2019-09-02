@@ -506,7 +506,7 @@ wd() {
 # fi
 
 # Setup pyenv custom prompt "zsh-python-prompt"
-source $ZSH_CUSTOM/zshrc.zsh
+source $ZSH_CUSTOM/plugins/zsh-python-prompt/zshrc.zsh
 RPROMPT+='$ZSH_PYTHON_PROMPT'
 setopt prompt_subst
 #zstyle ':zsh-python-prompt:pyenv:' expire_sec 30
@@ -514,7 +514,7 @@ setopt prompt_subst
 zstyle ':zsh-python-prompt:pyenv:' symbol '🐍'
 
 # Plugin to read Vim help files
-source $ZSH_CUSTOM/vimman.zsh
+source $ZSH_CUSTOM/plugins/vimman/vimman.zsh
 zstyle ':completion:*' use-cache yes
 zstyle ':vimman:' dir ~/.vim/plugged
 zstyle ':vimman:' verbose yes
