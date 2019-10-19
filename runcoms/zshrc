@@ -27,8 +27,13 @@
 ########################################
 
 # Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+#   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+# fi
+
+# Source My Prezto.
+if [[ -s "${$HOME}/.zsh/plugins/prezto/init.zsh" ]]; then
+  source "${$HOME}/.zsh/plugins/prezto/init.zsh"
 fi
 
 # Customize to your needs...
@@ -233,7 +238,7 @@ if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completio
 fi;
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" $HOME/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+[ -e "${HOME}/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" $HOME/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,$HOME/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
@@ -247,10 +252,10 @@ compctl -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes System
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='1000';
-export HISTFILESIZE="$HISTSIZE";
+export HISTFILESIZE=$HISTSIZE;
 # Omit duplicates and commands that begin with a space from history.
 export HISTCONTROL='ignoreboth';
-HISTFILE=$HOME/.zsh_history
+HISTFILE="${HOME}/.zsh_history"
 DIRSTACKSIZE=5
 
 setopt complete_aliases
@@ -428,11 +433,11 @@ zle -N tetris
 bindkey "^Q" tetris
 
 # load custom executable functions
-if [ -f $HOME/.myshutils ]; then
-   . $HOME/.myshutils
+if [ -f ${HOME}/.myshutils ]; then
+   . ${HOME}/.myshutils
 fi
-if [ -f $HOME/.myfuncts ]; then
-   . $HOME/.myfuncts
+if [ -f ${HOME}/.myfuncts ]; then
+   . ${HOME}/.myfuncts
 fi
 
 ## load custom executable functions
@@ -458,19 +463,19 @@ fi
 #done
 
 # aliases
-[[ -f $HOME/.aliases ]] && source $HOME/.aliases
+[[ -f ${HOME}/.aliases ]] && source ${HOME}/.aliases
 
 # New Fuzzy Finder from command line
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+[ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
 # New Fuzzy Finder with my custom config
-[ -f $HOME/.fzf.local ] && source $HOME/.fzf.local
+[ -f ${HOME}/.fzf.local ] && source ${HOME}/.fzf.local
 
 # Load my private stuff
-[[ -f $HOME/.ssh/.private ]] && source $HOME/.ssh/.private
+[[ -f ${HOME}/.ssh/.private ]] && source ${HOME}/.ssh/.private
 
 # Create wd command
 wd() {
-    . $HOME/.zsh/plugins/wd/wd.sh
+    . ${HOME}/.zsh/plugins/wd/wd.sh
 }
 
 # (eval):setopt:3: no such option: NO_warnnestedvar
@@ -506,7 +511,7 @@ zstyle ':zsh-python-prompt:pyenv:' symbol '🐍'
 # Plugin to read Vim help files
 source $ZSH_CUSTOM/plugins/vimman/vimman.zsh
 zstyle ':completion:*' use-cache yes
-zstyle ':vimman:' dir $HOME/.vim/plugged
+zstyle ':vimman:' dir ${HOME}/.vim/plugged
 zstyle ':vimman:' verbose yes
 zstyle ':vimman:' expire 7
 # Note that if you change the zstyle settings, you should delete the cache file and restart zsh.
@@ -517,18 +522,18 @@ zstyle ':vimman:' expire 7
 #source /usr/local/etc/bash_completion.d/*
 ############################################################
 ## Start rbenv
-#export PATH="$HOME/.rbenv/bin:$PATH"
+#export PATH="${HOME}/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
 
 # Add rbenv to PATH for scripting.
-if [[ -d $HOME/.rbenv/bin ]]; then
-    export PATH="$PATH:$HOME/.rbenv/bin"
+if [[ -d ${HOME}/.rbenv/bin ]]; then
+    export PATH="$PATH:${HOME}/.rbenv/bin"
     eval "$(rbenv init -)"
 fi
 
 # Add RVM to PATH for scripting
-if [[ -f $HOME/.rvmrc ]]; then
-    source $HOME/.rvmrc;
+if [[ -f ${HOME}/.rvmrc ]]; then
+    source ${HOME}/.rvmrc;
 fi
 
 # Load RVM into a shell session *as a function*
@@ -536,8 +541,8 @@ fi
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-if [[ -d $HOME/.rvm/bin ]]; then
-    export PATH="$PATH:$HOME/.rvm/bin"
+if [[ -d ${HOME}/.rvm/bin ]]; then
+    export PATH="$PATH:${HOME}/.rvm/bin"
 fi
 
 ## The next line updates PATH for the Google Cloud SDK.
