@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=zsh
 #
 # Executes commands at login post-zshrc.
 #
@@ -27,7 +29,6 @@
 #   10. ~/.zlogout
 #   11. /etc/zlogout
 ########################################
-
 # Execute code that does not affect the current session in the background.
 {
   # Compile the completion dump to increase startup speed.

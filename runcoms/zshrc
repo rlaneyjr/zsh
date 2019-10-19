@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=zsh
 #
 # Executes commands at the start of an interactive session.
 #
@@ -73,7 +75,7 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 #export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
-pyenv virtualenvwrapper_lazy
+#pyenv virtualenvwrapper_lazy
 #if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 #export PYENV_DEBUG=1
 #PYENV_ROOT
@@ -151,23 +153,11 @@ pyenv virtualenvwrapper_lazy
 #        eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # Set iterm hostname prior to script to speed-up.
-ITERM2_HOSTNAME='flypro'
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# maintains a jump-list of the directories you actually use
-# Set $_Z_CMD to change the command name (default z).
-# Set $_Z_DATA to change the datafile (default $HOME/.z).
-# Set $_Z_NO_RESOLVE_SYMLINKS to prevent symlink resolution.
-export _Z_NO_RESOLVE_SYMLINKS=true
-# Set $_Z_NO_PROMPT_COMMAND to handle PROMPT_COMMAND/precmd yourself.
-# Set $_Z_EXCLUDE_DIRS to an array of directory trees to exclude.
-# Set $_Z_OWNER to allow usage when in 'sudo -s' mode.
-export _Z_OWNER='rlaney'
-# (These settings should go in .bashrc/.zshrc before the line added above.)
-. /usr/local/etc/profile.d/z.sh
+#ITERM2_HOSTNAME='flypro'
+test -e "$HOME/.iterm2_shell_integration.zsh" && source "$HOME/.iterm2_shell_integration.zsh"
 
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/rlaney/Library/Caches/heroku/autocomplete/zsh_setup && \
+HEROKU_AC_ZSH_SETUP_PATH=$HOME/Library/Caches/heroku/autocomplete/zsh_setup && \
     test -f $HEROKU_AC_ZSH_SETUP_PATH && \
     source $HEROKU_AC_ZSH_SETUP_PATH;
 
@@ -177,10 +167,10 @@ HEROKU_AC_ZSH_SETUP_PATH=/Users/rlaney/Library/Caches/heroku/autocomplete/zsh_se
 test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # pandoc completion
-eval $(pandoc --bash-completion)
+eval "$(pandoc --bash-completion)"
 
 # pip zsh completion
-eval "`pip completion --zsh`"
+eval "$(pip completion --zsh)"
 compctl -K _pip_completion pip3
 
 # KubeCTL Completions for ZSH
@@ -193,7 +183,7 @@ source <(helm completion zsh)
 # source <(oc completion zsh)
 
 # Init npx completion
-source <(npx --shell-auto-fallback zsh)
+#source <(npx --shell-auto-fallback zsh)
 
 # Initialize jenv Java Manager
 eval "$(jenv init -)"
@@ -243,10 +233,10 @@ if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completio
 fi;
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+[ -e "$HOME/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" $HOME/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # Make zsh know about hosts already accessed by SSH
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,$HOME/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
@@ -257,7 +247,7 @@ compctl -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes System
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='1000';
-export HISTFILESIZE="${HISTSIZE}";
+export HISTFILESIZE="$HISTSIZE";
 # Omit duplicates and commands that begin with a space from history.
 export HISTCONTROL='ignoreboth';
 HISTFILE=$HOME/.zsh_history
@@ -438,11 +428,11 @@ zle -N tetris
 bindkey "^Q" tetris
 
 # load custom executable functions
-if [ -f ~/.myshutils ]; then
-   . ~/.myshutils
+if [ -f $HOME/.myshutils ]; then
+   . $HOME/.myshutils
 fi
-if [ -f ~/.myfuncts ]; then
-   . ~/.myfuncts
+if [ -f $HOME/.myfuncts ]; then
+   . $HOME/.myfuncts
 fi
 
 ## load custom executable functions
@@ -451,7 +441,7 @@ fi
 #done
 
 ## load custom executable functions
-#for function in ~/.zsh/completion/*; do
+#for function in $HOME/.zsh/completion/*; do
 #  source $function
 #done
 
@@ -468,19 +458,19 @@ fi
 #done
 
 # aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f $HOME/.aliases ]] && source $HOME/.aliases
 
 # New Fuzzy Finder from command line
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 # New Fuzzy Finder with my custom config
-[ -f ~/.fzf.local ] && source ~/.fzf.local
+[ -f $HOME/.fzf.local ] && source $HOME/.fzf.local
 
 # Load my private stuff
-[[ -f ~/.ssh/.private ]] && source ~/.ssh/.private
+[[ -f $HOME/.ssh/.private ]] && source $HOME/.ssh/.private
 
 # Create wd command
 wd() {
-    . ~/.zsh/plugins/wd/wd.sh
+    . $HOME/.zsh/plugins/wd/wd.sh
 }
 
 # (eval):setopt:3: no such option: NO_warnnestedvar
@@ -516,7 +506,7 @@ zstyle ':zsh-python-prompt:pyenv:' symbol '🐍'
 # Plugin to read Vim help files
 source $ZSH_CUSTOM/plugins/vimman/vimman.zsh
 zstyle ':completion:*' use-cache yes
-zstyle ':vimman:' dir ~/.vim/plugged
+zstyle ':vimman:' dir $HOME/.vim/plugged
 zstyle ':vimman:' verbose yes
 zstyle ':vimman:' expire 7
 # Note that if you change the zstyle settings, you should delete the cache file and restart zsh.
