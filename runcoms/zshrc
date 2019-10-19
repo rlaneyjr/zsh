@@ -32,8 +32,8 @@
 # fi
 
 # Source My Prezto.
-if [[ -s "${$HOME}/.zsh/plugins/prezto/init.zsh" ]]; then
-  source "${$HOME}/.zsh/plugins/prezto/init.zsh"
+if [[ -s "${HOME}/.zsh/plugins/prezto/init.zsh" ]]; then
+  source "${HOME}/.zsh/plugins/prezto/init.zsh"
 fi
 
 # Customize to your needs...
@@ -55,24 +55,24 @@ fi
 # autoload -U promptinit; promptinit
 
 ############################################################
-export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
 typeset -Ug PYTHONPATH
-export PYTHONPATH="$HOME/lib:$PYTHONPATH"
+export PYTHONPATH="${HOME}/lib:$PYTHONPATH"
 # Needed before installing Python versions with pyenv for YouCompleteMe
 #export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
 # Virtual Environment
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Projects
+export WORKON_HOME=${HOME}/.virtualenvs
+export PROJECT_HOME=${HOME}/Projects
 #export VIRTUALENVWRAPPER_PYTHON="$PYENV_ROOT/shims/python"
 #source /usr/local/bin/virtualenvwrapper.sh
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 # Directory to create environment for python3 -m venv
-#export ENV_DIR=$HOME/.virtualenvs
+#export ENV_DIR=${HOME}/.virtualenvs
 
 # Pyenv auto-activation
 export PYENV_SHELL="$(which zsh)"
@@ -96,7 +96,7 @@ eval "$(pyenv init -)"
 # export PIPENV_VERBOSITY=-1
 #export PIPENV_NO_INHERIT
 # export PIPENV_VENV_IN_PROJECT=True
-#export PIPENV_VIRTUALENV=$HOME/.virtualenvs
+#export PIPENV_VIRTUALENV=${HOME}/.virtualenvs
 #export PIPENV_MAX_SUBPROCESS
 #export PIPENV_MAX_RETRIES
 #export PIPENV_USE_SYSTEM
@@ -149,27 +149,27 @@ eval "$(pyenv init -)"
 #		        Custom Config                #
 ##############################################
 # Base16 Shell
-#BASE16_SHELL="$HOME/.config/colors/base16-shell/base16-default.dark.sh"
+#BASE16_SHELL="${HOME}/.config/colors/base16-shell/base16-default.dark.sh"
 #[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 # Base16 Shell
-#BASE16_SHELL="$HOME/.config/colors/base16-shell/"
+#BASE16_SHELL="${HOME}/.config/colors/base16-shell/"
 #[ -n "$PS1" ] && \
 #    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
 #        eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # Set iterm hostname prior to script to speed-up.
 #ITERM2_HOSTNAME='flypro'
-test -e "$HOME/.iterm2_shell_integration.zsh" && source "$HOME/.iterm2_shell_integration.zsh"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=$HOME/Library/Caches/heroku/autocomplete/zsh_setup && \
+HEROKU_AC_ZSH_SETUP_PATH=${HOME}/Library/Caches/heroku/autocomplete/zsh_setup && \
     test -f $HEROKU_AC_ZSH_SETUP_PATH && \
     source $HEROKU_AC_ZSH_SETUP_PATH;
 
 # OPAM configuration
 # Otherwise, every time you want to access your opam installation, you will need to run: eval $(opam env)
-#. $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+#. ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+test -r ${HOME}/.opam/opam-init/init.zsh && . ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # pandoc completion
 eval "$(pandoc --bash-completion)"
@@ -238,10 +238,10 @@ if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completio
 fi;
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "${HOME}/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" $HOME/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+[ -e "${HOME}/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # Make zsh know about hosts already accessed by SSH
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,$HOME/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,${HOME}/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
@@ -446,7 +446,7 @@ fi
 #done
 
 ## load custom executable functions
-#for function in $HOME/.zsh/completion/*; do
+#for function in ${HOME}/.zsh/completion/*; do
 #  source $function
 #done
 
