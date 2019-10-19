@@ -36,108 +36,59 @@ if [[ -s "${HOME}/.zsh/plugins/prezto/init.zsh" ]]; then
   source "${HOME}/.zsh/plugins/prezto/init.zsh"
 fi
 
-# Customize to your needs...
-# completion
-# autoload -U compinit -u
-# compinit -u
+# load custom executable functions
+if [ -f ${HOME}/.myshutils ]; then
+  . ${HOME}/.myshutils
+fi
+if [ -f ${HOME}/.myfuncts ]; then
+  . ${HOME}/.myfuncts
+fi
 
-# autoload -Uz compinit
-# for dump in ~/.zcompdump(N.mh+24); do
-#   compinit
-# done
-# compinit -C
+## load custom executable functions
+#for function in ~/.zsh/functions/*; do
+  #  source $function
+  #done
 
-# makes color constants available
-# autoload -U colors
-# colors
-
-# Loading Prompts
-# autoload -U promptinit; promptinit
+## load custom executable functions
+#for function in ${HOME}/.zsh/completion/*; do
+  #  source $function
+  #done
 
 ############################################################
-export PYENV_ROOT="${HOME}/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 export PYTHONIOENCODING='UTF-8';
 typeset -Ug PYTHONPATH
-export PYTHONPATH="${HOME}/lib:$PYTHONPATH"
+
+[[ -d "${HOME}/lib" ]] && export PYTHONPATH="${HOME}/lib:$PYTHONPATH"
 # Needed before installing Python versions with pyenv for YouCompleteMe
-#export PYTHON_CONFIGURE_OPTS="--enable-framework"
+  #export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
-# Virtual Environment
-export WORKON_HOME=${HOME}/.virtualenvs
-export PROJECT_HOME=${HOME}/Projects
-#export VIRTUALENVWRAPPER_PYTHON="$PYENV_ROOT/shims/python"
-#source /usr/local/bin/virtualenvwrapper.sh
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-# Directory to create environment for python3 -m venv
-#export ENV_DIR=${HOME}/.virtualenvs
+if has_cmd virtualenv
+then
+  # Virtual Environment
+  export WORKON_HOME=${HOME}/.virtualenvs
+  export PROJECT_HOME=${HOME}/Projects
+  #export VIRTUALENVWRAPPER_PYTHON="$PYENV_ROOT/shims/python"
+  #source /usr/local/bin/virtualenvwrapper.sh
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
+  # Directory to create environment for python3 -m venv
+  #export ENV_DIR=${HOME}/.virtualenvs
+fi
 
-# Pyenv auto-activation
-export PYENV_SHELL="$(which zsh)"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-#export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-#pyenv virtualenvwrapper_lazy
-#if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-#export PYENV_DEBUG=1
-#PYENV_ROOT
-#PYENV_SHELL
-#PYENV_VIRTUALENVWRAPPER_PYENV_VERSION
-#PYENV_VIRTUALENV_DISABLE_PROMPT
-#PYENV_VIRTUALENV_INIT
-
-# PIPENV Settings
-# eval "$(pipenv --completion)"
-#export PIPENV_PYTHON=$PYENV_ROOT/shims/python
-# export PIPENV_SHELL="$(which zsh)"
-# export PIPENV_VERBOSITY=-1
-#export PIPENV_NO_INHERIT
-# export PIPENV_VENV_IN_PROJECT=True
-#export PIPENV_VIRTUALENV=${HOME}/.virtualenvs
-#export PIPENV_MAX_SUBPROCESS
-#export PIPENV_MAX_RETRIES
-#export PIPENV_USE_SYSTEM
-#export PIPENV_TEST_INDEX
-#export PIPENV_MAX_ROUNDS
-#export PIPENV_USE_HASHES
-#export PIPENV_YES
-#export PIPENV_DONT_USE_PYENV
-#export PIPENV_SKIP_VALIDATION
-# Use this version of Python when creating new virtual environments, by default (e.g. 3.6).
-#export PIPENV_DEFAULT_PYTHON_VERSION
-# Always use fancy mode when invoking pipenv shell.
-# export PIPENV_SHELL_FANCY=1
-# If set, use .venv in your project directory instead of the global virtualenv manager pew.
-#export PIPENV_VENV_IN_PROJECT
-# Disable terminal colors, for some reason.
-#export PIPENV_COLORBLIND
-# Disable terminal spinner, for cleaner logs. Automatically set in CI environments.
-#export PIPENV_NOSPIN
-# Set to an integer for the maximum number of directories to recursively search for a Pipfile.
-#export PIPENV_MAX_DEPTH
-# Set to an integer for the max number of seconds Pipenv will wait for virtualenv creation to complete. Defaults to 120 seconds.
-#export PIPENV_TIMEOUT
-# Set to an integer for the max number of seconds Pipenv will wait for package installation before timing out. Defaults to 900 seconds.
-#export PIPENV_INSTALL_TIMEOUT
-# Set to disable automatically using an activated virtualenv over the current project’s own virtual environment.
-#export PIPENV_IGNORE_VIRTUALENVS
-# When running pipenv from a $PWD other than the same directory where the Pipfile is located, instruct pipenv to find the Pipfile in the location specified by this environment variable.
-#export PIPENV_PIPFILE
-# Location for Pipenv to store it’s package cache.
-#export PIPENV_CACHE_DIR
-# Disable emojis in output.
-#export PIPENV_HIDE_EMOJIS
-# Location for Pipenv to load your project’s .env.
-#export PIPENV_DOTENV_LOCATION
-# Tell Pipenv not to load the .env files automatically.
-#export PIPENV_DONT_LOAD_ENV
-# If you’d like to set these environment variables on a per-project basis, I recommend utilizing the fantastic direnv project, in order to do so.
-# Also note that pip itself supports environment variables, if you need additional customization.
-# For example:
-# $ PIP_INSTALL_OPTION="-- -DCMAKE_BUILD_TYPE=Release" pipenv install -e .
+if has_cmd pyenv
+then
+  export PYENV_ROOT="${HOME}/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  # Pyenv auto-activation
+  export PYENV_SHELL="$(which zsh)"
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+  #export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+  eval "$(pyenv init -)"
+  #eval "$(pyenv virtualenv-init -)"
+  #pyenv virtualenvwrapper_lazy
+  #if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+  #export PYENV_DEBUG=1
+fi
 
 # Powerline setup
 #powerline-daemon -q
@@ -158,7 +109,7 @@ eval "$(pyenv init -)"
 #        eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # Set iterm hostname prior to script to speed-up.
-#ITERM2_HOSTNAME='flypro'
+ITERM2_HOSTNAME=${$(hostname)%%\.*}
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # heroku autocomplete setup
@@ -172,15 +123,14 @@ HEROKU_AC_ZSH_SETUP_PATH=${HOME}/Library/Caches/heroku/autocomplete/zsh_setup &&
 test -r ${HOME}/.opam/opam-init/init.zsh && . ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # pandoc completion
-eval "$(pandoc --bash-completion)"
+has_cmd pandoc && eval "$(pandoc --bash-completion)"
 
 # pip zsh completion
-eval "$(pip completion --zsh)"
-compctl -K _pip_completion pip3
+has_cmd pip && eval "$(pip completion --zsh)" && compctl -K _pip_completion pip3
 
 # KubeCTL Completions for ZSH
-source <(kubectl completion zsh)
-source <(helm completion zsh)
+has_cmd kubectl && source <(kubectl completion zsh)
+has_cmd helm && source <(helm completion zsh)
 # KubeCTL Completions for BASH
 #source <(kubectl completion bash)
 
@@ -191,10 +141,10 @@ source <(helm completion zsh)
 #source <(npx --shell-auto-fallback zsh)
 
 # Initialize jenv Java Manager
-eval "$(jenv init -)"
+has_cmd jenv && eval "$(jenv init -)"
 
 # Initialize direnv the environment variables manager
-eval "$(direnv hook zsh)"
+has_cmd direnv && eval "$(direnv hook zsh)"
 
 # Pyenv auto-activation
 #eval "$(pyenv init -)"
@@ -245,10 +195,12 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
-compctl -W "NSGlobalDomain" defaults;
-
-# Add `killall` tab completion for common apps
-compctl -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal iTerm2" killall;
+if [[ $OS == 'mac' ]]
+then
+  compctl -W "NSGlobalDomain" defaults;
+  # Add `killall` tab completion for common apps
+  compctl -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal iTerm2" killall;
+fi
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='1000';
@@ -406,7 +358,7 @@ bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
 globalias() {
    zle _expand_alias
    zle expand-word
-   zle self-insert
+   #zle self-insert
 }
 zle -N globalias
 # control-space expands all aliases, including global
@@ -431,24 +383,6 @@ bindkey -M vicmd "q" push-line
 autoload -U tetris
 zle -N tetris
 bindkey "^Q" tetris
-
-# load custom executable functions
-if [ -f ${HOME}/.myshutils ]; then
-   . ${HOME}/.myshutils
-fi
-if [ -f ${HOME}/.myfuncts ]; then
-   . ${HOME}/.myfuncts
-fi
-
-## load custom executable functions
-#for function in ~/.zsh/functions/*; do
-#  source $function
-#done
-
-## load custom executable functions
-#for function in ${HOME}/.zsh/completion/*; do
-#  source $function
-#done
 
 # NOT WORKING!!
 #/usr/local/etc/bash_completion.d/doctl:type:4555: bad option: -t
