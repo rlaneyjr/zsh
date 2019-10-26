@@ -27,20 +27,24 @@
 ########################################
 
 # Source Prezto.
-# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]
+then
 #   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 # fi
 
 # Source My Prezto.
-if [[ -s "${HOME}/.zsh/plugins/prezto/init.zsh" ]]; then
+if [[ -s "${HOME}/.zsh/plugins/prezto/init.zsh" ]]
+then
   source "${HOME}/.zsh/plugins/prezto/init.zsh"
 fi
 
 # load custom executable functions
-if [ -f ${HOME}/.myshutils ]; then
+if [ -f ${HOME}/.myshutils ]
+then
   . ${HOME}/.myshutils
 fi
-if [ -f ${HOME}/.myfuncts ]; then
+if [ -f ${HOME}/.myfuncts ]
+then
   . ${HOME}/.myfuncts
 fi
 
@@ -114,8 +118,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=${HOME}/Library/Caches/heroku/autocomplete/zsh_setup && \
-    test -f $HEROKU_AC_ZSH_SETUP_PATH && \
-    source $HEROKU_AC_ZSH_SETUP_PATH
+  test -f $HEROKU_AC_ZSH_SETUP_PATH && \
+  source $HEROKU_AC_ZSH_SETUP_PATH
 
 # OPAM configuration
 # Otherwise, every time you want to access your opam installation, you will need to run: eval $(opam env)
@@ -123,40 +127,48 @@ HEROKU_AC_ZSH_SETUP_PATH=${HOME}/Library/Caches/heroku/autocomplete/zsh_setup &&
 test -r ${HOME}/.opam/opam-init/init.zsh && . ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # pandoc completion
-if has_cmd pandoc; then
+if has_cmd pandoc
+then
 	eval "$(pandoc --bash-completion)"
 fi
 
 # pip zsh completion
-if has_cmd pip; then
+if has_cmd pip
+then
 	eval "$(pip completion --zsh)" && compctl -K _pip_completion pip3
 fi
 
 # KubeCTL Completions for ZSH
-if has_cmd kubectl; then
+if has_cmd kubectl
+then
 	source <(kubectl completion zsh)
 fi
-if has_cmd helm; then
+if has_cmd helm
+then
 	source <(helm completion zsh)
 fi
 
 # In zsh*, the following will load openshift cli zsh completion:
-if has_cmd os; then
+if has_cmd os
+then
   source <(oc completion zsh)
 fi
 
 # Init npx completion
-if has_cmd npx; then
+if has_cmd npx
+then
   source <(npx --shell-auto-fallback zsh)
 fi
 
 # Initialize jenv Java Manager
-if has_cmd jenv; then
+if has_cmd jenv
+then
 	eval "$(jenv init -)"
 fi
 
 # Initialize direnv the environment variables manager
-if has_cmd direnv; then
+if has_cmd direnv
+then
 	eval "$(direnv hook zsh)"
 fi
 
@@ -166,38 +178,46 @@ fi
 #if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # AWS-CLI completer
-# if [ -f /usr/local/bin/aws_completer ]; then
+# if [ -f /usr/local/bin/aws_completer ]
+# then
 #     source /usr/local/bin/aws_completer
 # fi
-# if [ -f /usr/local/bin/aws_zsh_completer.sh]; then
+# if [ -f /usr/local/bin/aws_zsh_completer.sh]
+# then
 #     source /usr/local/bin/aws_zsh_completer.sh
 # fi
-# if [ -f /usr/local/bin/aws_completer.sh]; then
+# if [ -f /usr/local/bin/aws_completer.sh]
+# then
 #     source /usr/local/bin/aws_completer.sh
 # fi
 
 #Add the following to your ~/.bash_profile:
-#if [ -f /usr/local/share/bash-completion/bash_completion ]; then
+#if [ -f /usr/local/share/bash-completion/bash_completion ]
+# then
 #  . /usr/local/share/bash-completion/bash_completion
 #fi
 
 # Add tab completion for many Bash commands
-if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
-	source "$(brew --prefix)/share/bash-completion/bash_completion"
-elif [ -f /etc/bash_completion ]; then
-	source /etc/bash_completion
-fi
+# if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]
+# then
+# 	source "$(brew --prefix)/share/bash-completion/bash_completion"
+# elif [ -f /etc/bash_completion ]
+# then
+# 	source /etc/bash_completion
+# fi
 
 # Homebrew completion
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
+# if type brew &>/dev/null
+# then
+#   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+# fi
 
 # Brew command-not-found initialization Not needed with zprezto
 #if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
 
 # Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]
+then
 	compctl -o default -o nospace -F _git g
 fi
 
@@ -209,7 +229,8 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
-if [[ $OS == 'mac' ]]; then
+if [[ $OS == 'mac' ]]
+then
   compctl -W "NSGlobalDomain" defaults
   # Add `killall` tab completion for common apps
   compctl -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal iTerm2" killall
@@ -431,14 +452,16 @@ bindkey "^Q" tetris
 #
 # function install_powerline_precmd() {
 #   for s in "${precmd_functions[@]}"; do
-#     if [ "$s" = "powerline_precmd" ]; then
+#     if [ "$s" = "powerline_precmd" ]
+then
 #       return
 #     fi
 #   done
 #   precmd_functions+=(powerline_precmd)
 # }
 #
-# if [ "$TERM" != "linux" ]; then
+# if [ "$TERM" != "linux" ]
+then
 #     install_powerline_precmd
 # fi
 
@@ -468,14 +491,16 @@ zstyle ':vimman:' expire 7
 #eval "$(rbenv init -)"
 
 # Add rbenv to PATH for scripting.
-if [[ -d ${HOME}/.rbenv/bin ]]; then
-    export PATH="$PATH:${HOME}/.rbenv/bin"
-    eval "$(rbenv init -)"
+if [[ -d ${HOME}/.rbenv/bin ]]
+then
+  export PATH="$PATH:${HOME}/.rbenv/bin"
+  eval "$(rbenv init -)"
 fi
 
 # Add RVM to PATH for scripting
-if [[ -f ${HOME}/.rvmrc ]]; then
-    source ${HOME}/.rvmrc
+if [[ -f ${HOME}/.rvmrc ]]
+then
+  source ${HOME}/.rvmrc
 fi
 
 # Load RVM into a shell session *as a function*
@@ -483,8 +508,9 @@ fi
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-if [[ -d ${HOME}/.rvm/bin ]]; then
-    export PATH="$PATH:${HOME}/.rvm/bin"
+if [[ -d ${HOME}/.rvm/bin ]]
+then
+  export PATH="$PATH:${HOME}/.rvm/bin"
 fi
 
 ## The next line updates PATH for the Google Cloud SDK.
@@ -494,8 +520,9 @@ fi
 #if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'; fi
 
 ########### Profiler ###########
-if [[ "$PROFILE_STARTUP" == true ]]; then
-    zprof
-    unsetopt xtrace
-    exec 2>&3 3>&-
+if [[ "$PROFILE_STARTUP" == true ]]
+then
+  zprof
+  unsetopt xtrace
+  exec 2>&3 3>&-
 fi
