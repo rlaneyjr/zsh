@@ -56,7 +56,7 @@ fi
 
 ############################################################
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
-export PYTHONIOENCODING='UTF-8';
+export PYTHONIOENCODING='UTF-8'
 typeset -Ug PYTHONPATH
 
 [[ -d "${HOME}/lib" ]] && export PYTHONPATH="${HOME}/lib:$PYTHONPATH"
@@ -115,7 +115,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=${HOME}/Library/Caches/heroku/autocomplete/zsh_setup && \
     test -f $HEROKU_AC_ZSH_SETUP_PATH && \
-    source $HEROKU_AC_ZSH_SETUP_PATH;
+    source $HEROKU_AC_ZSH_SETUP_PATH
 
 # OPAM configuration
 # Otherwise, every time you want to access your opam installation, you will need to run: eval $(opam env)
@@ -123,28 +123,42 @@ HEROKU_AC_ZSH_SETUP_PATH=${HOME}/Library/Caches/heroku/autocomplete/zsh_setup &&
 test -r ${HOME}/.opam/opam-init/init.zsh && . ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # pandoc completion
-has_cmd pandoc && eval "$(pandoc --bash-completion)"
+if has_cmd pandoc; then
+	eval "$(pandoc --bash-completion)"
+fi
 
 # pip zsh completion
-has_cmd pip && eval "$(pip completion --zsh)" && compctl -K _pip_completion pip3
+if has_cmd pip; then
+	eval "$(pip completion --zsh)" && compctl -K _pip_completion pip3
+fi
 
 # KubeCTL Completions for ZSH
-has_cmd kubectl && source <(kubectl completion zsh)
-has_cmd helm && source <(helm completion zsh)
-# KubeCTL Completions for BASH
-#source <(kubectl completion bash)
+if has_cmd kubectl; then
+	source <(kubectl completion zsh)
+fi
+if has_cmd helm; then
+	source <(helm completion zsh)
+fi
 
 # In zsh*, the following will load openshift cli zsh completion:
-# source <(oc completion zsh)
+if has_cmd os; then
+  source <(oc completion zsh)
+fi
 
 # Init npx completion
-#source <(npx --shell-auto-fallback zsh)
+if has_cmd npx; then
+  source <(npx --shell-auto-fallback zsh)
+fi
 
 # Initialize jenv Java Manager
-has_cmd jenv && eval "$(jenv init -)"
+if has_cmd jenv; then
+	eval "$(jenv init -)"
+fi
 
 # Initialize direnv the environment variables manager
-has_cmd direnv && eval "$(direnv hook zsh)"
+if has_cmd direnv; then
+	eval "$(direnv hook zsh)"
+fi
 
 # Pyenv auto-activation
 #eval "$(pyenv init -)"
@@ -153,7 +167,7 @@ has_cmd direnv && eval "$(direnv hook zsh)"
 
 # AWS-CLI completer
 # if [ -f /usr/local/bin/aws_completer ]; then
-#     source /usr/local/bin/aws_completer;
+#     source /usr/local/bin/aws_completer
 # fi
 # if [ -f /usr/local/bin/aws_zsh_completer.sh]; then
 #     source /usr/local/bin/aws_zsh_completer.sh
@@ -167,46 +181,45 @@ has_cmd direnv && eval "$(direnv hook zsh)"
 #  . /usr/local/share/bash-completion/bash_completion
 #fi
 
-### Add tab completion for many Bash commands
-##if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
-##	source "$(brew --prefix)/share/bash-completion/bash_completion";
-##elif [ -f /etc/bash_completion ]; then
-##	source /etc/bash_completion;
-##fi;
-##
-### Homebrew completion
-##if type brew &>/dev/null; then
-##  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-##fi
+# Add tab completion for many Bash commands
+if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
+	source "$(brew --prefix)/share/bash-completion/bash_completion"
+elif [ -f /etc/bash_completion ]; then
+	source /etc/bash_completion
+fi
+
+# Homebrew completion
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
 
 # Brew command-not-found initialization Not needed with zprezto
 #if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
 
 # Enable tab completion for `g` by marking it as an alias for `git`
 if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-	compctl -o default -o nospace -F _git g;
-fi;
+	compctl -o default -o nospace -F _git g
+fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "${HOME}/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+[ -e "${HOME}/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,${HOME}/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
-if [[ $OS == 'mac' ]]
-then
-  compctl -W "NSGlobalDomain" defaults;
+if [[ $OS == 'mac' ]]; then
+  compctl -W "NSGlobalDomain" defaults
   # Add `killall` tab completion for common apps
-  compctl -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal iTerm2" killall;
+  compctl -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal iTerm2" killall
 fi
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
-export HISTSIZE='1000';
-export HISTFILESIZE=$HISTSIZE;
+export HISTSIZE='1000'
+export HISTFILESIZE=$HISTSIZE
 # Omit duplicates and commands that begin with a space from history.
-export HISTCONTROL='ignoreboth';
+export HISTCONTROL='ignoreboth'
 HISTFILE="${HOME}/.zsh_history"
 DIRSTACKSIZE=5
 
@@ -393,7 +406,7 @@ bindkey "^Q" tetris
 #/usr/local/etc/bash_completion.d/openshift:type:785: bad option: -t
 # Adding extra completions manually
 #for f in $(ls -1 /usr/local/etc/bash_completion.d); do
-#    source /usr/local/etc/bash_completion.d/$f;
+#    source /usr/local/etc/bash_completion.d/$f
 #done
 
 # aliases
@@ -406,11 +419,6 @@ bindkey "^Q" tetris
 
 # Load my private stuff
 [[ -f ${HOME}/.ssh/.private ]] && source ${HOME}/.ssh/.private
-
-# Create wd command
-wd() {
-    . ${HOME}/.zsh/plugins/wd/wd.sh
-}
 
 # (eval):setopt:3: no such option: NO_warnnestedvar
 # fix: (eval):setopt:3: no such option: NO_warnnestedvar
@@ -467,7 +475,7 @@ fi
 
 # Add RVM to PATH for scripting
 if [[ -f ${HOME}/.rvmrc ]]; then
-    source ${HOME}/.rvmrc;
+    source ${HOME}/.rvmrc
 fi
 
 # Load RVM into a shell session *as a function*

@@ -29,7 +29,8 @@
 # Credit: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
 
 #PROFILE_STARTUP=true
-if [[ "$PROFILE_STARTUP" == true ]]; then
+if [[ "$PROFILE_STARTUP" == true ]]
+then
     zmodload zsh/zprof # Output load-time statistics
     # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
     PS4=$'%D{%M%S%.} %N:%i> '
@@ -38,7 +39,8 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
 fi
 ############################################################
 # Ensure that a non-login, non-interactive shell has a defined environment.
-if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]
+then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
@@ -46,15 +48,18 @@ fi
 #            Load First                #
 ########################################
 # We get the OS type to use throughout
-if [[ $OSTYPE =~ darwin* ]]; then
+if [[ $OSTYPE =~ darwin* ]]
+then
   export OS="mac"
   export HD="/Users/$USER"
-elif [[ $OSTYPE =~ linux* ]]; then
+elif [[ $OSTYPE =~ linux* ]]
+then
   export OS="lin"
   export HD="/home/$USER"
 fi
 # Stuff that needs to be loaded first due to dependencies.
-if [[ -n $SSH_CONNECTION ]]; then
+if [[ -n $SSH_CONNECTION ]]
+then
   export TERM='xterm-256color'
 else
   export TERM='xterm-256color-italic'
@@ -76,23 +81,27 @@ export PAGER='less'
 
 # Language
 # Prefer US English and use UTF-8.
-if [[ -z "$LANG" ]]; then
+if [[ -z "$LANG" ]]
+then
   export LANG='en_US.UTF-8'
 fi
-if [[ -z "$LC_ALL" ]]; then
+if [[ -z "$LC_ALL" ]]
+then
   export LC_ALL='en_US.UTF-8'
 fi
 # Set architecture flags
-if [[ -z "$ARCHFLAGS" ]]; then
+if [[ -z "$ARCHFLAGS" ]]
+then
   export ARCHFLAGS='-arch x86_64'
 fi
 
 # Paths
 # Ensure path arrays do not contain duplicates.
-  typeset -gU cdpath fpath mailpath path manpath
+typeset -gU cdpath fpath mailpath path manpath
 
 # Set the list of directories that cd searches.
-if [[ $OS == "mac" ]]; then
+if [[ $OS == "mac" ]]
+then
   cdpath=(
     $HD
     $HD/{bin,lib,scripts,temp,tmp}
@@ -103,54 +112,55 @@ if [[ $OS == "mac" ]]; then
     $cdpath
   )
   # Set the list of directories that Zsh searches for programs.
-    path=(
-      $HD/.poetry/bin
-      /usr/local/opt/coreutils/libexec/gnubin
-      /usr/local/{bin,sbin}
-      /Applications
-      $HD/.go/bin
-      $HD/.jenv/{bin,libexec}
-      $HD/.local/bin
-      $HD/bin
-      /opt/X11/bin
-      /opt/cisco/anyconnect/bin
-      /opt/vagrant/bin
-      $path
-    )
-    # load our own completions (~/.zsh/completion)
-    fpath=(
-      $HD/.zsh/completion
-      /usr/local/share/zsh/functions
-      /usr/local/share/zsh/site-functions
-      /usr/local/share/zsh-completions
-      $fpath
-    )
-  elif [[ $OS == "lin" ]]; then
-    cdpath=(
-      $HD
-      $HD/{bin,lib,scripts,temp,tmp}
-      $HD/{Projects,Workshops,Documents}
-      $cdpath
-    )
-    # Set the list of directories that Zsh searches for programs.
-      path=(
-        /bin
-        /usr/bin
-        /snap/bin
-        /usr/local/{bin,sbin}
-        /usr/share/virtualenvwrapper
-        /usr/share/zsh/{function,help,vendor-completion}
-        $HD/.local/bin
-        $HD/.jenv/{bin,libexec}
-        $HD/bin
-        $path
-      )
-      # load our own completions (~/.zsh/completion)
-      fpath=(
-        $HD/.zsh/completion
-        /usr/share/zsh/{function,help,vendor-completion}
-        $fpath
-      )
+  path=(
+    $HD/.poetry/bin
+    /usr/local/opt/coreutils/libexec/gnubin
+    /usr/local/{bin,sbin}
+    /Applications
+    $HD/.go/bin
+    $HD/.jenv/{bin,libexec}
+    $HD/.local/bin
+    $HD/bin
+    /opt/X11/bin
+    /opt/cisco/anyconnect/bin
+    /opt/vagrant/bin
+    $path
+  )
+  # load our own completions (~/.zsh/completion)
+  fpath=(
+    $HD/.zsh/completion
+    /usr/local/share/zsh/functions
+    /usr/local/share/zsh/site-functions
+    /usr/local/share/zsh-completions
+    $fpath
+  )
+elif [[ $OS == "lin" ]]
+then
+  cdpath=(
+    $HD
+    $HD/{bin,lib,scripts,temp,tmp}
+    $HD/{Projects,Workshops,Documents}
+    $cdpath
+  )
+  # Set the list of directories that Zsh searches for programs.
+  path=(
+    /bin
+    /usr/bin
+    /snap/bin
+    /usr/local/{bin,sbin}
+    /usr/share/virtualenvwrapper
+    /usr/share/zsh/{function,help,vendor-completion}
+    $HD/.local/bin
+    $HD/.jenv/{bin,libexec}
+    $HD/bin
+    $path
+  )
+  # load our own completions (~/.zsh/completion)
+  fpath=(
+    $HD/.zsh/completion
+    /usr/share/zsh/{function,help,vendor-completion}
+    $fpath
+  )
 fi
 
 # Removed path:
@@ -202,7 +212,8 @@ export CLICOLOR=1
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
-if (( $#commands[(i)lesspipe(|.sh)] )); then
+if (( $#commands[(i)lesspipe(|.sh)] ))
+then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
 
@@ -219,7 +230,8 @@ fi
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
 export MANPATH="$MANPATH:/usr/local/man"
-if [[ $OS == "mac" ]]; then
+if [[ $OS == "mac" ]]
+then
   export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
 
@@ -245,7 +257,8 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 
 ############################################################
 # Ensure go has it's GOROOT loaded
-if [[ -d $HD/.go ]] && [[ -z $GOPATH ]]; then
+if [[ -d $HD/.go ]] && [[ -z $GOPATH ]]
+then
   typeset -gU GOPATH
   export GOPATH="$HD/.go"
 fi
@@ -258,7 +271,8 @@ fi
 # Node Version Manager
 #Add the following to ~/.zshrc or your desired shell
 #configuration file:
-if [[ -d $HD/.nvm ]] && [[ -z $NVM_DIR ]]; then
+if [[ -d $HD/.nvm ]] && [[ -z $NVM_DIR ]]
+then
   #export NVM_AUTO_USE_ACTIVE=true
   export NVM_DIR="$HD/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
@@ -284,7 +298,8 @@ export NODE_REPL_MODE="sloppy"
 
 ############################################################
 # Atom Environment Variables:
-if [[ -d $HD/.atom ]]; then
+if [[ -d $HD/.atom ]]
+then
   # The path from which Atom loads source code in dev mode.
   # Defaults to `~/github/atom`.
   export ATOM_DEV_RESOURCE_PATH="$HD/.atom/dev"
@@ -299,7 +314,8 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 ############################################################
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HD/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc' ]; then
+if [ -f '$HD/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc' ]
+then
   source '$HD/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc'
 fi
 
