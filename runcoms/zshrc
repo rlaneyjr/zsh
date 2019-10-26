@@ -149,7 +149,7 @@ then
 fi
 
 # In zsh*, the following will load openshift cli zsh completion:
-if has_cmd os
+if has_cmd oc
 then
   source <(oc completion zsh)
 fi
