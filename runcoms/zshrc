@@ -453,7 +453,7 @@ bindkey "^Q" tetris
 # function install_powerline_precmd() {
 #   for s in "${precmd_functions[@]}"; do
 #     if [ "$s" = "powerline_precmd" ]
-then
+# then
 #       return
 #     fi
 #   done
@@ -461,7 +461,7 @@ then
 # }
 #
 # if [ "$TERM" != "linux" ]
-then
+# then
 #     install_powerline_precmd
 # fi
 
