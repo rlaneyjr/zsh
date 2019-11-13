@@ -52,6 +52,7 @@ if [[ $OSTYPE =~ darwin* ]]
 then
   export OS="mac"
   export HD="/Users/$USER"
+  export BROWSER='open'
 elif [[ $OSTYPE =~ linux* ]]
 then
   # Get the user first to seperate root account
@@ -65,20 +66,16 @@ then
   fi
 else echo "Unsupported OS!"
 fi
-# Stuff that needs to be loaded first due to dependencies.
-if [[ -n $SSH_CONNECTION ]]
-then
-  export TERM='xterm-256color'
-else
-  export TERM='xterm-256color-italic'
-fi
+# # Stuff that needs to be loaded first due to dependencies.
+# if [[ -n $SSH_CONNECTION ]]
+# then
+#   export TERM='xterm-256color'
+# else
+#   export TERM='xterm-256color-italic'
+# fi
 
-if [[ $OS == "mac" ]]; then 
-  export ZSH_CUSTOM=/Users/rlaney/.zsh
-  export BROWSER='open'
-elif [[ $OS == "lin" ]]; then 
-  export ZSH_CUSTOM=/home/rlaney/.zsh
-fi
+export ZSH_CUSTOM="${HD}/.zsh"
+
 # export TERM='tmux-256color'
 # export TERM='screen-256color'
 
