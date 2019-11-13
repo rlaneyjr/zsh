@@ -54,8 +54,16 @@ then
   export HD="/Users/$USER"
 elif [[ $OSTYPE =~ linux* ]]
 then
-  export OS="lin"
-  export HD="/home/$USER"
+  # Get the user first to seperate root account
+  if [[ $USER == "root" ]]
+  then
+    export OS="lin"
+    export HD="/root"
+  else
+    export OS="lin"
+    export HD="/home/$USER"
+  fi
+else echo "Unsupported OS!"
 fi
 # Stuff that needs to be loaded first due to dependencies.
 if [[ -n $SSH_CONNECTION ]]
