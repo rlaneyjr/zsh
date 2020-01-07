@@ -47,6 +47,10 @@ fi
 ########################################
 #            Load First                #
 ########################################
+# enable colored output from ls, etc. on FreeBSD-based systems
+# Must come before TERM declaration
+export CLICOLOR=1
+
 # We get the OS type to use throughout
 if [[ $OSTYPE =~ darwin* ]]
 then
@@ -66,13 +70,14 @@ then
   fi
 else echo "Unsupported OS!"
 fi
-# # Stuff that needs to be loaded first due to dependencies.
-# if [[ -n $SSH_CONNECTION ]]
-# then
-#   export TERM='xterm-256color'
-# else
-#   export TERM='xterm-256color-italic'
-# fi
+
+# Stuff that needs to be loaded first due to dependencies.
+if [[ -n $SSH_CONNECTION ]]
+then
+  export TERM='xterm-256color'
+else
+  export TERM='xterm-256color-italic'
+fi
 
 export ZSH_CUSTOM="${HD}/.zsh"
 
@@ -118,7 +123,6 @@ then
   )
   # Set the list of directories that Zsh searches for programs.
   path=(
-    $HD/.poetry/bin
     /usr/local/opt/coreutils/libexec/gnubin
     /usr/local/{bin,sbin}
     /Applications
@@ -126,6 +130,7 @@ then
     $HD/.jenv/{bin,libexec}
     $HD/.local/bin
     $HD/bin
+    $HD/.poetry/bin
     /opt/X11/bin
     /opt/cisco/anyconnect/bin
     /opt/vagrant/bin
@@ -198,9 +203,6 @@ fi
 #    /usr/local/share/bash-completion
 #    /usr/local/share/bash-completion/bash-completion
 #    /usr/local/share/bash-completion/completions
-
-# enable colored output from ls, etc. on FreeBSD-based systems
-export CLICOLOR=1
 
 # Less
 # Set the default Less options.
@@ -383,8 +385,8 @@ export PINBOARD_API_KEY="rlaney:765D69E427A843DCC53F"
 # # For pkg-config to find zlib you may need to set:
 # export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 #
-# # For pyenv install command tell pyenv to use brew installed programs and MacOS10.14.sdk
-# export PYTHON_CONFIGURE_OPTS='--enable-framework'
+# For pyenv install command tell pyenv to use brew installed programs and MacOS10.14.sdk
+export PYTHON_CONFIGURE_OPTS='--enable-framework'
 # export CPPFLAGS='-I/usr/local/opt/zlib/include'
 # export CFLAGS='-O2 -I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include'
 # export LDFLAGS='-L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib'
