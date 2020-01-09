@@ -61,8 +61,8 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search' \
   'command-not-found' \
   'alias-tips' \
-  'contrib-clipboard' \
-  'contrib-kubernetes' \
+  'clipboard' \
+  'kubernetes' \
   'contrib-prompt' \
   'prompt'
 
