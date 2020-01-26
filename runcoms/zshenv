@@ -264,7 +264,7 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 
 ############################################################
 # Ensure go has it's GOROOT loaded
-if [[ -d $HD/.go ]] && [[ -z $GOPATH ]]
+if [ -d "$HD/.go" ] && [ -z $GOPATH ]
 then
   typeset -gU GOPATH
   export GOPATH="$HD/.go"
@@ -278,7 +278,7 @@ fi
 # Node Version Manager
 #Add the following to ~/.zshrc or your desired shell
 #configuration file:
-if [[ -d $HD/.nvm ]] && [[ -z $NVM_DIR ]]
+if [ -d "$HD/.nvm" ] && [ -z $NVM_DIR ]
 then
   #export NVM_AUTO_USE_ACTIVE=true
   export NVM_DIR="$HD/.nvm"
@@ -305,7 +305,7 @@ export NODE_REPL_MODE="sloppy"
 
 ############################################################
 # Atom Environment Variables:
-if [[ -d $HD/.atom ]]
+if [ -d "$HD/.atom" ]
 then
   # The path from which Atom loads source code in dev mode.
   # Defaults to `~/github/atom`.
