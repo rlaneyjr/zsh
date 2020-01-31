@@ -208,14 +208,14 @@ fi
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
-  #export LESS='-F -g -i -M -R -S -w -X -z-4'
-  export LESS='-g -i -M -R -S -w -z -4'
+#export LESS='-F -g -i -M -R -S -w -X -z-4'
+export LESS='-g -i -M -R -S -w -z -4'
 
 # Get color support for 'less'
-  # export LESS="--RAW-CONTROL-CHARS"
-  # export LESS='--ignore-case --raw-control-chars'
-    # Load LESS_TERMCAP color variables for less, man, etc., colorful
-      [[ -f $HD/.LESS_TERMCAP ]] && source $HD/.LESS_TERMCAP
+# export LESS="--RAW-CONTROL-CHARS"
+# export LESS='--ignore-case --raw-control-chars'
+# Load LESS_TERMCAP color variables for less, man, etc., colorful
+[[ -f $HD/.LESS_TERMCAP ]] && source $HD/.LESS_TERMCAP
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
@@ -230,8 +230,8 @@ fi
 # can add a "gnubin" directory to your PATH from your bashrc like:
 #     PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 # Additionally, you can access their man pages with normal names if you add
-  # the "gnuman" directory to your MANPATH from your bashrc as well:
-  #     MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+# the "gnuman" directory to your MANPATH from your bashrc as well:
+#     MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 ############################################################
 # Don’t clear the screen after quitting a manual page.
@@ -245,7 +245,7 @@ fi
 export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
 
 # Must be defined for zsh/complist
-  export ZLS_COLORS=$LS_COLORS
+export ZLS_COLORS=$LS_COLORS
 
 # ranger --copy-config=all
 # Warning: Unable to set locale.  Expect encoding problems.
@@ -391,3 +391,5 @@ export PYTHON_CONFIGURE_OPTS='--enable-framework'
 # export CFLAGS='-O2 -I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include'
 # export LDFLAGS='-L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib'
 # export AR='/usr/bin/ar'
+
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
