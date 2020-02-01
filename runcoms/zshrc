@@ -87,9 +87,9 @@ then
   export PYENV_SHELL="$(which zsh)"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
   #export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-  #eval "$(pyenv init -)"
+  eval "$(pyenv init -)"
   #eval "$(pyenv virtualenv-init -)"
-  pyenv virtualenvwrapper_lazy
+  #pyenv virtualenvwrapper_lazy
   #if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
   #export PYENV_DEBUG=1
 fi
