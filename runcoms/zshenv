@@ -384,6 +384,7 @@ export PINBOARD_API_KEY="rlaney:765D69E427A843DCC53F"
 #
 # # For pkg-config to find zlib you may need to set:
 # export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
+<<<<<<< Updated upstream
 #
 # For pyenv install command tell pyenv to use brew installed programs and MacOS10.14.sdk
 export PYTHON_CONFIGURE_OPTS='--enable-framework'
@@ -393,3 +394,6 @@ export PYTHON_CONFIGURE_OPTS='--enable-framework'
 # export AR='/usr/bin/ar'
 
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+=======
+
+>>>>>>> Stashed changes
