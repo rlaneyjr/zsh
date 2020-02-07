@@ -440,11 +440,7 @@ bindkey "^Q" tetris
 # fi
 
 # Setup pyenv custom prompt "zsh-python-prompt"
-<<<<<<< Updated upstream
 source "${ZSH_CUSTOM}/plugins/zsh-python-prompt/zshrc.zsh"
-=======
-source "$ZSH_CUSTOM/plugins/zsh-python-prompt/zshrc.zsh"
->>>>>>> Stashed changes
 RPROMPT+="$ZSH_PYTHON_PROMPT"
 setopt prompt_subst
 #zstyle ':zsh-python-prompt:pyenv:' expire_sec 30
@@ -452,11 +448,7 @@ setopt prompt_subst
 zstyle ':zsh-python-prompt:pyenv:' symbol '🐍'
 
 # Plugin to read Vim help files
-<<<<<<< Updated upstream
 source "${ZSH_CUSTOM}/plugins/vimman/vimman.zsh"
-=======
-source "$ZSH_CUSTOM/plugins/vimman/vimman.zsh"
->>>>>>> Stashed changes
 zstyle ':completion:*' use-cache yes
 zstyle ':vimman:' dir "${HOME}/.vim/plugged"
 zstyle ':vimman:' verbose yes
@@ -494,7 +486,7 @@ zstyle ':vimman:' expire 7
 # Enable bashcompinit for pipx completions
 autoload -U bashcompinit
 bashcompinit
-eval "$(register-python-argcomplete pipx)"
+has_cmd "pipx" && eval "$(register-python-argcomplete pipx)"
 
 ########### Profiler ###########
 if [[ "$PROFILE_STARTUP" == true ]]
@@ -503,7 +495,4 @@ then
   unsetopt xtrace
   exec 2>&3 3>&-
 fi
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
