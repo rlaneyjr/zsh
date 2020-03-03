@@ -27,17 +27,17 @@
 ########################################
 
 # Source Prezto.
-# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]
-# then
-#   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-# fi
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]
+then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
 # Source My Prezto.
-[[ -s "${HOME}/.zsh/plugins/prezto/init.zsh" ]] && source "${HOME}/.zsh/plugins/prezto/init.zsh"
+# [[ -s "${HOME}/.zsh/plugins/prezto/init.zsh" ]] && source "${HOME}/.zsh/plugins/prezto/init.zsh"
 
 # load custom executable functions
-[ -f "${HOME}/.myshutils" ] && source "${HOME}/.myshutils"
-[ -f "${HOME}/.myfuncts" ] && source "${HOME}/.myfuncts"
+[[ -f "${HOME}/.myshutils" ]] && source "${HOME}/.myshutils"
+[[ -f "${HOME}/.myfuncts" ]] && source "${HOME}/.myfuncts"
 
 ## load custom executable functions
 #for function in ~/.zsh/functions/*; do
@@ -111,18 +111,19 @@ fi
 
 # Set iterm hostname prior to script to speed-up.
 ITERM2_HOSTNAME=${$(hostname)%%\.*}
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && \
+  source "${HOME}/.iterm2_shell_integration.zsh"
 
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=${HOME}/Library/Caches/heroku/autocomplete/zsh_setup && \
+HEROKU_AC_ZSH_SETUP_PATH="${HOME}/Library/Caches/heroku/autocomplete/zsh_setup" && \
   test -f $HEROKU_AC_ZSH_SETUP_PATH && \
   source $HEROKU_AC_ZSH_SETUP_PATH
 
 # OPAM configuration
 # Otherwise, every time you want to access your opam installation, you will need to run: eval $(opam env)
 #. ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-test -r ${HOME}/.opam/opam-init/init.zsh && . ${HOME}/.opam/opam-init/init.zsh \
-  > /dev/null 2> /dev/null || true
+test -r "${HOME}/.opam/opam-init/init.zsh" && \
+  . "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
 
 # pandoc completion
 has_cmd "pandoc" && eval "$(pandoc --bash-completion)"
@@ -190,13 +191,13 @@ has_cmd "direnv" && eval "$(direnv hook zsh)"
 #if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
 
 # Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]
+if type _git &> /dev/null && [[ -f "/usr/local/etc/bash_completion.d/git-completion.bash" ]]
 then
 	compctl -o default -o nospace -F _git g
 fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "${HOME}/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
+[[ -e "${HOME}/.ssh/config" ]] && compctl -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,${HOME}/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
@@ -408,9 +409,9 @@ bindkey "^Q" tetris
 [[ -f "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
 
 # New Fuzzy Finder from command line
-[ -f "${HOME}/.fzf.zsh" ] && source "${HOME}/.fzf.zsh"
+[[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 # New Fuzzy Finder with my custom config
-[ -f "${HOME}/.fzf.local" ] && source "${HOME}/.fzf.local"
+[[ -f "${HOME}/.fzf.local" ]] && source "${HOME}/.fzf.local"
 
 # Load my private stuff
 [[ -f "${HOME}/.ssh/.private" ]] && source "${HOME}/.ssh/.private"
@@ -484,9 +485,9 @@ zstyle ':vimman:' expire 7
 #if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Enable bashcompinit for pipx completions
-autoload -U bashcompinit
-bashcompinit
-has_cmd "pipx" && eval "$(register-python-argcomplete pipx)"
+# autoload -U bashcompinit
+# bashcompinit
+# has_cmd "pipx" && eval "$(register-python-argcomplete pipx)"
 
 ########### Profiler ###########
 if [[ "$PROFILE_STARTUP" == true ]]
