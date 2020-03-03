@@ -27,36 +27,32 @@
 ########################################
 
 # Source Prezto.
-# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]
-# then
-#   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-# fi
-
-# Source My Prezto.
-if [[ -s "${HOME}/.zsh/plugins/prezto/init.zsh" ]]
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]
 then
-  source "${HOME}/.zsh/plugins/prezto/init.zsh"
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # load custom executable functions
-if [ -f ${HOME}/.myshutils ]
+if [[ -f "${HOME}/.myshutils" ]]
 then
-  . ${HOME}/.myshutils
+  . "${HOME}/.myshutils"
 fi
-if [ -f ${HOME}/.myfuncts ]
+if [[ -f "${HOME}/.myfuncts" ]]
 then
-  . ${HOME}/.myfuncts
+  . "${HOME}/.myfuncts"
 fi
 
-## load custom executable functions
-#for function in ~/.zsh/functions/*; do
-  #  source $function
-  #done
-
-## load custom executable functions
-#for function in ${HOME}/.zsh/completion/*; do
-  #  source $function
-  #done
+# # load custom executable functions
+# for func in "${HOME}/.zsh/functions/*"
+# do
+#   source $func
+# done
+#
+# # load custom executable functions
+# for comp in "${HOME}/.zsh/completion/*"
+# do
+#   source $comp
+# done
 
 ############################################################
 # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
@@ -108,8 +104,8 @@ fi
 #[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 # Base16 Shell
 #BASE16_SHELL="${HOME}/.config/colors/base16-shell/"
-#[ -n "$PS1" ] && \
-#    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+#[[ -n "$PS1" ]] && \
+#    [[ -s "$BASE16_SHELL/profile_helper.sh" ]] && \
 #        eval "$("$BASE16_SHELL/profile_helper.sh")"
 
 # Set iterm hostname prior to script to speed-up.
@@ -123,8 +119,8 @@ HEROKU_AC_ZSH_SETUP_PATH=${HOME}/Library/Caches/heroku/autocomplete/zsh_setup &&
 
 # OPAM configuration
 # Otherwise, every time you want to access your opam installation, you will need to run: eval $(opam env)
-#. ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-test -r ${HOME}/.opam/opam-init/init.zsh && . ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+#. "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
+test -r "${HOME}/.opam/opam-init/init.zsh" && . "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
 
 # pandoc completion
 if has_cmd pandoc
@@ -178,30 +174,30 @@ fi
 #if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # AWS-CLI completer
-# if [ -f /usr/local/bin/aws_completer ]
+# if [[ -f "/usr/local/bin/aws_completer" ]]
 # then
 #     source /usr/local/bin/aws_completer
 # fi
-# if [ -f /usr/local/bin/aws_zsh_completer.sh]
+# if [[ -f /usr/local/bin/aws_zsh_completer.sh]]
 # then
 #     source /usr/local/bin/aws_zsh_completer.sh
 # fi
-# if [ -f /usr/local/bin/aws_completer.sh]
+# if [[ -f /usr/local/bin/aws_completer.sh]]
 # then
 #     source /usr/local/bin/aws_completer.sh
 # fi
 
 #Add the following to your ~/.bash_profile:
-#if [ -f /usr/local/share/bash-completion/bash_completion ]
+#if [[ -f "/usr/local/share/bash-completion/bash_completion" ]]
 # then
 #  . /usr/local/share/bash-completion/bash_completion
 #fi
 
 # Add tab completion for many Bash commands
-# if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]
+# if which brew &> /dev/null && [[ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]]
 # then
 # 	source "$(brew --prefix)/share/bash-completion/bash_completion"
-# elif [ -f /etc/bash_completion ]
+# elif [[ -f "/etc/bash_completion" ]]
 # then
 # 	source /etc/bash_completion
 # fi
@@ -216,13 +212,13 @@ fi
 #if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
 
 # Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]
+if type _git &> /dev/null && [[ -f "/usr/local/etc/bash_completion.d/git-completion.bash" ]]
 then
 	compctl -o default -o nospace -F _git g
 fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "${HOME}/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
+[[ -e "${HOME}/.ssh/config" ]] && compctl -o "default" -o "nospace" -W "$(grep "^Host" "${HOME}/.ssh/config" | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,${HOME}/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
@@ -431,15 +427,15 @@ bindkey "^Q" tetris
 #done
 
 # aliases
-[[ -f ${HOME}/.aliases ]] && source ${HOME}/.aliases
+[[ -f "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
 
 # New Fuzzy Finder from command line
-[ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
+[[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 # New Fuzzy Finder with my custom config
-[ -f ${HOME}/.fzf.local ] && source ${HOME}/.fzf.local
+[[ -f "${HOME}/.fzf.local" ]] && source "${HOME}/.fzf.local"
 
 # Load my private stuff
-[[ -f ${HOME}/.ssh/.private ]] && source ${HOME}/.ssh/.private
+[[ -f "${HOME}/.ssh/.private" ]] && source "${HOME}/.ssh/.private"
 
 # (eval):setopt:3: no such option: NO_warnnestedvar
 # fix: (eval):setopt:3: no such option: NO_warnnestedvar
@@ -452,7 +448,7 @@ bindkey "^Q" tetris
 #
 # function install_powerline_precmd() {
 #   for s in "${precmd_functions[@]}"; do
-#     if [ "$s" = "powerline_precmd" ]
+#     if [[ "$s" = "powerline_precmd" ]]
 # then
 #       return
 #     fi
@@ -460,14 +456,14 @@ bindkey "^Q" tetris
 #   precmd_functions+=(powerline_precmd)
 # }
 #
-# if [ "$TERM" != "linux" ]
+# if [[ "$TERM" != "linux" ]]
 # then
 #     install_powerline_precmd
 # fi
 
 # Setup pyenv custom prompt "zsh-python-prompt"
 source "${ZSH_CUSTOM}/plugins/zsh-python-prompt/zshrc.zsh"
-RPROMPT+="$ZSH_PYTHON_PROMPT"
+RPROMPT+=$ZSH_PYTHON_PROMPT
 setopt prompt_subst
 #zstyle ':zsh-python-prompt:pyenv:' expire_sec 30
 #zstyle ':zsh-python-prompt:pyenv:' symbol '⌘'
@@ -491,16 +487,16 @@ zstyle ':vimman:' expire 7
 #eval "$(rbenv init -)"
 
 # Add rbenv to PATH for scripting.
-if [[ -d ${HOME}/.rbenv/bin ]]
+if [[ -d "${HOME}/.rbenv/bin" ]]
 then
   export PATH="$PATH:${HOME}/.rbenv/bin"
   eval "$(rbenv init -)"
 fi
 
 # Add RVM to PATH for scripting
-if [[ -f ${HOME}/.rvmrc ]]
+if [[ -f "${HOME}/.rvmrc" ]]
 then
-  source ${HOME}/.rvmrc
+  source "${HOME}/.rvmrc"
 fi
 
 # Load RVM into a shell session *as a function*
@@ -508,16 +504,16 @@ fi
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-if [[ -d ${HOME}/.rvm/bin ]]
+if [[ -d "${HOME}/.rvm/bin" ]]
 then
   export PATH="$PATH:${HOME}/.rvm/bin"
 fi
 
 ## The next line updates PATH for the Google Cloud SDK.
-#if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc'; fi
+#if [[ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc' ]]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc'; fi
 #
 ## The next line enables shell command completion for gcloud.
-#if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'; fi
+#if [[ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ]]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Enable bashcompinit for pipx completions
 autoload -U bashcompinit

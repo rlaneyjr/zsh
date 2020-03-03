@@ -38,12 +38,6 @@ then
     setopt xtrace prompt_subst
 fi
 ############################################################
-# Ensure that a non-login, non-interactive shell has a defined environment.
-if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]
-then
-  source "${ZDOTDIR:-$HOME}/.zprofile"
-fi
-
 ########################################
 #            Load First                #
 ########################################
@@ -80,6 +74,13 @@ else
 fi
 
 export ZSH_CUSTOM="${HD}/.zsh"
+export ZDOTDIR=$HOME
+
+# # Ensure that a non-login, non-interactive shell has a defined environment.
+# if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]
+# then
+#   source "${ZDOTDIR:-$HOME}/.zprofile"
+# fi
 
 # export TERM='tmux-256color'
 # export TERM='screen-256color'

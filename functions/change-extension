@@ -1,7 +1,11 @@
+# -*- coding: utf-8 -*-
+# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+# Author: Ricky Laney
+# License: MIT
+
 # Change file extensions recursively in current directory
 #
 #   change-extension erb haml
-
 function change-extension() {
   foreach f (**/*.$1)
     mv $f $f:r.$2
