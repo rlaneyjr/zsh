@@ -161,7 +161,11 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # fi
 
 # The next line enables shell command completion for gcloud.
+<<<<<<< Updated upstream
 # if [[ -f "${HD}/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc" ]]; then 
+=======
+# if [[ -f "${HD}/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc" ]]; then
+>>>>>>> Stashed changes
 #   source "${HD}/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc"
 # fi
 
