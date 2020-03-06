@@ -42,7 +42,7 @@ then
     $HD/{cheaters,repos,DB}
     $HD/{Projects,Workshops,Documents,PycharmProjects}
     $HD/"Creative Cloud Files"
-    $HD/"Dropbox (Personal)"
+    $HD/"Dropbox"
     $cdpath
   )
   # Set the list of directories that Zsh searches for programs.

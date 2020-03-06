@@ -26,6 +26,16 @@
 #   11. /etc/zlogout
 ########################################
 
+# PROFILE_STARTUP=true
+# if [[ "$PROFILE_STARTUP" == true ]]
+# then
+#   zmodload zsh/zprof # Output load-time statistics
+#   # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+#   PS4=$"%D{%M%S%.} %N:%i> "
+#   exec 3>&2 2>"${XDG_CACHE_HOME:-$HOME/temp}/zshrc_startup.$$"
+#   setopt xtrace prompt_subst
+# fi
+########################################
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]
 then
@@ -489,11 +499,11 @@ zstyle ':vimman:' expire 7
 # bashcompinit
 # has_cmd "pipx" && eval "$(register-python-argcomplete pipx)"
 
-########### Profiler ###########
-if [[ "$PROFILE_STARTUP" == true ]]
-then
-  zprof
-  unsetopt xtrace
-  exec 2>&3 3>&-
-fi
-
+# ########### Profiler ###########
+# if [[ "$PROFILE_STARTUP" == true ]]
+# then
+#   zprof
+#   unsetopt xtrace
+#   exec 2>&3 3>&-
+# fi
+#
