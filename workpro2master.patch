@@ -1,0 +1,518 @@
+diff --git a/functions/change-extension b/functions/change-extension
+index af95d93..596b9c5 100755
+--- a/functions/change-extension
++++ b/functions/change-extension
+@@ -1,11 +1,7 @@
+-# -*- coding: utf-8 -*-
+-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+-# Author: Ricky Laney
+-# License: MIT
+-
+ # Change file extensions recursively in current directory
+ #
+ #   change-extension erb haml
++
+ function change-extension() {
+   foreach f (**/*.$1)
+     mv $f $f:r.$2
+diff --git a/functions/docsh b/functions/docsh
+index f15f89e..1d228e7 100755
+--- a/functions/docsh
++++ b/functions/docsh
+@@ -1,7 +1,2 @@
+-# -*- coding: utf-8 -*-
+-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+-# Author: Ricky Laney
+-# License: MIT
+-
+ # Enter bash shell inside docker container
+ function docsh() { docker exec -it $1 bash }
+diff --git a/functions/envup b/functions/envup
+index 8ea1397..99ea286 100755
+--- a/functions/envup
++++ b/functions/envup
+@@ -1,9 +1,5 @@
+-# -*- coding: utf-8 -*-
+-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+-# Author: Ricky Laney
+-# License: MIT
+-
+ # Load .env file into shell session for environment variables
++
+ function envup() {
+   if [ -f .env ]; then
+     export `cat .env`
+diff --git a/functions/file-search b/functions/file-search
+index aaec912..63008de 100755
+--- a/functions/file-search
++++ b/functions/file-search
+@@ -1,8 +1,3 @@
+-# -*- coding: utf-8 -*-
+-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+-# Author: Ricky Laney
+-# License: MIT
+-
+ # FileSearch
+ function f() { find . -iname "*$1*" ${@:2} }
+ function r() { grep "$1" ${@:2} -R . }
+diff --git a/functions/g b/functions/g
+index b3c6f4e..438db75 100755
+--- a/functions/g
++++ b/functions/g
+@@ -1,8 +1,3 @@
+-# -*- coding: utf-8 -*-
+-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+-# Author: Ricky Laney
+-# License: MIT
+-
+ # No arguments: `git status`
+ # With arguments: acts like `git`
+ g() {
+diff --git a/functions/gpip b/functions/gpip
+index c77a5ef..a6133f5 100755
+--- a/functions/gpip
++++ b/functions/gpip
+@@ -1,7 +1,3 @@
+-# -*- coding: utf-8 -*-
+-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+-# Author: Ricky Laney
+-# License: MIT
+ 
+ # Install global packages with 'gpip'
+ function gpip(){
+diff --git a/functions/gpip3 b/functions/gpip3
+index 2f25b5a..fda819b 100755
+--- a/functions/gpip3
++++ b/functions/gpip3
+@@ -1,7 +1,3 @@
+-# -*- coding: utf-8 -*-
+-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+-# Author: Ricky Laney
+-# License: MIT
+ 
+ # Install global packages with 'gpip'
+ function gpip3(){
+diff --git a/functions/hlp b/functions/hlp
+index b83ba92..b75274b 100755
+--- a/functions/hlp
++++ b/functions/hlp
+@@ -1,7 +1,2 @@
+-# -*- coding: utf-8 -*-
+-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+-# Author: Ricky Laney
+-# License: MIT
+-
+ # Quick and colorful help
+ function hlp() { "$@" --help | less }
+diff --git a/functions/lgi b/functions/lgi
+index cc5907f..5784e6c 100755
+--- a/functions/lgi
++++ b/functions/lgi
+@@ -1,8 +1,3 @@
+-# -*- coding: utf-8 -*-
+-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+-# Author: Ricky Laney
+-# License: MIT
+-
+ # Copy gitignore file
+ function cgi() {
+     ln -s ~/.dotfiles/gitignore .gitignore
+diff --git a/functions/mcd b/functions/mcd
+index 1dafaa1..4154b02 100755
+--- a/functions/mcd
++++ b/functions/mcd
+@@ -1,9 +1,5 @@
+-# -*- coding: utf-8 -*-
+-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+-# Author: Ricky Laney
+-# License: MIT
+-
+ # Make directory and change into it.
++
+ function mcd() {
+   mkdir -p "$1" && cd "$1";
+ }
+diff --git a/functions/mkcd b/functions/mkcd
+index d9f2ccc..0af5534 100755
+--- a/functions/mkcd
++++ b/functions/mkcd
+@@ -1,7 +1,2 @@
+-# -*- coding: utf-8 -*-
+-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+-# Author: Ricky Laney
+-# License: MIT
+-
+ #mkdir and cd
+ function mkcd() { mkdir -p "$@" && cd "$_"; }
+diff --git a/functions/sshr b/functions/sshr
+index 67e5ee4..6eaf628 100755
+--- a/functions/sshr
++++ b/functions/sshr
+@@ -1,9 +1,5 @@
+-# -*- coding: utf-8 -*-
+-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+-# Author: Ricky Laney
+-# License: MIT
+-
+ # Setup ssh for me
++
+ function sshr() {
+ /usr/local/bin/expect << EOF
+ source $HOME/bin/ralssh.exp
+diff --git a/runcoms/zpreztorc b/runcoms/zpreztorc
+index 9569665..bcb4a40 100755
+--- a/runcoms/zpreztorc
++++ b/runcoms/zpreztorc
+@@ -32,8 +32,7 @@
+ # Color output (auto set to 'no' on dumb terminals).
+ zstyle ':prezto:*:*' color 'yes'
+ # Add additional directories to load prezto modules from
+-zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins
+-# zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins/prezto-contrib
++zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins/prezto-contrib
+ # zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins/wd
+ # zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins/tmux-xpanes
+ # zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins/vimman
+@@ -139,8 +138,8 @@ zstyle ':prezto:module:history-substring-search' globbing-flags ''
+ #zstyle ':prezto:module:prompt' theme 'sorin'
+ #zstyle ':prezto:module:prompt' theme 'belak'
+ #zstyle ':prezto:module:contrib-prompt' theme 'spaceship'
+-#zstyle ':prezto:module:prompt' theme 'sorin_contrib'
+-zstyle ':prezto:module:prompt' theme 'paradox'
++zstyle ':prezto:module:prompt' theme 'sorin_contrib'
++#zstyle ':prezto:module:prompt' theme 'paradox'
+ #zstyle ':prezto:module:prompt' theme 'josh'
+ #zstyle ':prezto:module:prompt' theme 'steeef'
+ # Set the working directory prompt display length.
+diff --git a/runcoms/zshenv b/runcoms/zshenv
+index ed2f74b..03221eb 100755
+--- a/runcoms/zshenv
++++ b/runcoms/zshenv
+@@ -38,6 +38,12 @@ then
+     setopt xtrace prompt_subst
+ fi
+ ############################################################
++# Ensure that a non-login, non-interactive shell has a defined environment.
++if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]
++then
++  source "${ZDOTDIR:-$HOME}/.zprofile"
++fi
++
+ ########################################
+ #            Load First                #
+ ########################################
+@@ -74,13 +80,6 @@ else
+ fi
+ 
+ export ZSH_CUSTOM="${HD}/.zsh"
+-export ZDOTDIR=$HOME
+-
+-# # Ensure that a non-login, non-interactive shell has a defined environment.
+-# if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]
+-# then
+-#   source "${ZDOTDIR:-$HOME}/.zprofile"
+-# fi
+ 
+ # export TERM='tmux-256color'
+ # export TERM='screen-256color'
+@@ -124,8 +123,6 @@ then
+   )
+   # Set the list of directories that Zsh searches for programs.
+   path=(
+-    /Applications/Wireshark.app/Contents/MacOS
+-    /Library/Developer/CommandLineTools/usr/bin
+     /usr/local/opt/coreutils/libexec/gnubin
+     /usr/local/{bin,sbin}
+     /Applications
+@@ -396,3 +393,4 @@ export PYTHON_CONFIGURE_OPTS='--enable-framework'
+ # export AR='/usr/bin/ar'
+ 
+ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
++
+diff --git a/runcoms/zshrc b/runcoms/zshrc
+index 1aa3fb8..283a4c7 100755
+--- a/runcoms/zshrc
++++ b/runcoms/zshrc
+@@ -27,32 +27,27 @@
+ ########################################
+ 
+ # Source Prezto.
+-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]
+-then
+-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+-fi
++# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]
++# then
++#   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
++# fi
++
++# Source My Prezto.
++[[ -s "${HOME}/.zsh/plugins/prezto/init.zsh" ]] && source "${HOME}/.zsh/plugins/prezto/init.zsh"
+ 
+ # load custom executable functions
+-if [[ -f "${HOME}/.myshutils" ]]
+-then
+-  . "${HOME}/.myshutils"
+-fi
+-if [[ -f "${HOME}/.myfuncts" ]]
+-then
+-  . "${HOME}/.myfuncts"
+-fi
++[ -f "${HOME}/.myshutils" ] && source "${HOME}/.myshutils"
++[ -f "${HOME}/.myfuncts" ] && source "${HOME}/.myfuncts"
+ 
+-# # load custom executable functions
+-# for func in "${HOME}/.zsh/functions/*"
+-# do
+-#   source $func
+-# done
+-#
+-# # load custom executable functions
+-# for comp in "${HOME}/.zsh/completion/*"
+-# do
+-#   source $comp
+-# done
++## load custom executable functions
++#for function in ~/.zsh/functions/*; do
++  #  source $function
++  #done
++
++## load custom executable functions
++#for function in ${HOME}/.zsh/completion/*; do
++  #  source $function
++  #done
+ 
+ ############################################################
+ # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+@@ -88,6 +83,12 @@ then
+   pyenv virtualenvwrapper_lazy
+   #if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+   #export PYENV_DEBUG=1
++  # For pyenv install command tell pyenv to use brew installed programs and MacOS10.14.sdk
++  export PYTHON_CONFIGURE_OPTS='--enable-framework'
++  # export CPPFLAGS='-I/usr/local/opt/zlib/include'
++  # export CFLAGS='-O2 -I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include'
++  # export LDFLAGS='-L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib'
++  # export AR='/usr/bin/ar'
+ fi
+ 
+ # Powerline setup
+@@ -104,8 +105,8 @@ fi
+ #[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+ # Base16 Shell
+ #BASE16_SHELL="${HOME}/.config/colors/base16-shell/"
+-#[[ -n "$PS1" ]] && \
+-#    [[ -s "$BASE16_SHELL/profile_helper.sh" ]] && \
++#[ -n "$PS1" ] && \
++#    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+ #        eval "$("$BASE16_SHELL/profile_helper.sh")"
+ 
+ # Set iterm hostname prior to script to speed-up.
+@@ -119,54 +120,31 @@ HEROKU_AC_ZSH_SETUP_PATH=${HOME}/Library/Caches/heroku/autocomplete/zsh_setup &&
+ 
+ # OPAM configuration
+ # Otherwise, every time you want to access your opam installation, you will need to run: eval $(opam env)
+-#. "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
+-test -r "${HOME}/.opam/opam-init/init.zsh" && . "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
++#. ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
++test -r ${HOME}/.opam/opam-init/init.zsh && . ${HOME}/.opam/opam-init/init.zsh \
++  > /dev/null 2> /dev/null || true
+ 
+ # pandoc completion
+-if has_cmd pandoc
+-then
+-	eval "$(pandoc --bash-completion)"
+-fi
++has_cmd "pandoc" && eval "$(pandoc --bash-completion)"
+ 
+ # pip zsh completion
+-if has_cmd pip
+-then
+-	eval "$(pip completion --zsh)" && compctl -K _pip_completion pip3
+-fi
++has_cmd "pip" && eval "$(pip completion --zsh)" && compctl -K _pip_completion pip3
+ 
+ # KubeCTL Completions for ZSH
+-if has_cmd kubectl
+-then
+-	source <(kubectl completion zsh)
+-fi
+-if has_cmd helm
+-then
+-	source <(helm completion zsh)
+-fi
++has_cmd "kubectl" && source <(kubectl completion zsh)
++has_cmd "helm" && source <(helm completion zsh)
+ 
+ # In zsh*, the following will load openshift cli zsh completion:
+-if has_cmd oc
+-then
+-  source <(oc completion zsh)
+-fi
++has_cmd "oc" && source <(oc completion zsh)
+ 
+ # Init npx completion
+-if has_cmd npx
+-then
+-  source <(npx --shell-auto-fallback zsh)
+-fi
++has_cmd "npx" && source <(npx --shell-auto-fallback zsh)
+ 
+ # Initialize jenv Java Manager
+-if has_cmd jenv
+-then
+-	eval "$(jenv init -)"
+-fi
++has_cmd "jenv" && eval "$(jenv init -)"
+ 
+ # Initialize direnv the environment variables manager
+-if has_cmd direnv
+-then
+-	eval "$(direnv hook zsh)"
+-fi
++has_cmd "direnv" && eval "$(direnv hook zsh)"
+ 
+ # Pyenv auto-activation
+ #eval "$(pyenv init -)"
+@@ -174,30 +152,30 @@ fi
+ #if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+ 
+ # AWS-CLI completer
+-# if [[ -f "/usr/local/bin/aws_completer" ]]
++# if [ -f /usr/local/bin/aws_completer ]
+ # then
+ #     source /usr/local/bin/aws_completer
+ # fi
+-# if [[ -f /usr/local/bin/aws_zsh_completer.sh]]
++# if [ -f /usr/local/bin/aws_zsh_completer.sh]
+ # then
+ #     source /usr/local/bin/aws_zsh_completer.sh
+ # fi
+-# if [[ -f /usr/local/bin/aws_completer.sh]]
++# if [ -f /usr/local/bin/aws_completer.sh]
+ # then
+ #     source /usr/local/bin/aws_completer.sh
+ # fi
+ 
+ #Add the following to your ~/.bash_profile:
+-#if [[ -f "/usr/local/share/bash-completion/bash_completion" ]]
++#if [ -f /usr/local/share/bash-completion/bash_completion ]
+ # then
+ #  . /usr/local/share/bash-completion/bash_completion
+ #fi
+ 
+ # Add tab completion for many Bash commands
+-# if which brew &> /dev/null && [[ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]]
++# if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]
+ # then
+ # 	source "$(brew --prefix)/share/bash-completion/bash_completion"
+-# elif [[ -f "/etc/bash_completion" ]]
++# elif [ -f /etc/bash_completion ]
+ # then
+ # 	source /etc/bash_completion
+ # fi
+@@ -212,13 +190,13 @@ fi
+ #if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
+ 
+ # Enable tab completion for `g` by marking it as an alias for `git`
+-if type _git &> /dev/null && [[ -f "/usr/local/etc/bash_completion.d/git-completion.bash" ]]
++if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]
+ then
+ 	compctl -o default -o nospace -F _git g
+ fi
+ 
+ # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+-[[ -e "${HOME}/.ssh/config" ]] && compctl -o "default" -o "nospace" -W "$(grep "^Host" "${HOME}/.ssh/config" | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
++[ -e "${HOME}/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
+ 
+ # Make zsh know about hosts already accessed by SSH
+ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,${HOME}/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+@@ -430,9 +408,9 @@ bindkey "^Q" tetris
+ [[ -f "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
+ 
+ # New Fuzzy Finder from command line
+-[[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
++[ -f "${HOME}/.fzf.zsh" ] && source "${HOME}/.fzf.zsh"
+ # New Fuzzy Finder with my custom config
+-[[ -f "${HOME}/.fzf.local" ]] && source "${HOME}/.fzf.local"
++[ -f "${HOME}/.fzf.local" ] && source "${HOME}/.fzf.local"
+ 
+ # Load my private stuff
+ [[ -f "${HOME}/.ssh/.private" ]] && source "${HOME}/.ssh/.private"
+@@ -448,7 +426,7 @@ bindkey "^Q" tetris
+ #
+ # function install_powerline_precmd() {
+ #   for s in "${precmd_functions[@]}"; do
+-#     if [[ "$s" = "powerline_precmd" ]]
++#     if [ "$s" = "powerline_precmd" ]
+ # then
+ #       return
+ #     fi
+@@ -456,14 +434,14 @@ bindkey "^Q" tetris
+ #   precmd_functions+=(powerline_precmd)
+ # }
+ #
+-# if [[ "$TERM" != "linux" ]]
++# if [ "$TERM" != "linux" ]
+ # then
+ #     install_powerline_precmd
+ # fi
+ 
+ # Setup pyenv custom prompt "zsh-python-prompt"
+ source "${ZSH_CUSTOM}/plugins/zsh-python-prompt/zshrc.zsh"
+-RPROMPT+=$ZSH_PYTHON_PROMPT
++RPROMPT+="$ZSH_PYTHON_PROMPT"
+ setopt prompt_subst
+ #zstyle ':zsh-python-prompt:pyenv:' expire_sec 30
+ #zstyle ':zsh-python-prompt:pyenv:' symbol '⌘'
+@@ -487,38 +465,28 @@ zstyle ':vimman:' expire 7
+ #eval "$(rbenv init -)"
+ 
+ # Add rbenv to PATH for scripting.
+-if [[ -d "${HOME}/.rbenv/bin" ]]
+-then
+-  export PATH="$PATH:${HOME}/.rbenv/bin"
+-  eval "$(rbenv init -)"
+-fi
++[[ -d "${HOME}/.rbenv/bin" ]] && export PATH="$PATH:${HOME}/.rbenv/bin" && eval "$(rbenv init -)"
+ 
+ # Add RVM to PATH for scripting
+-if [[ -f "${HOME}/.rvmrc" ]]
+-then
+-  source "${HOME}/.rvmrc"
+-fi
++[[ -f "${HOME}/.rvmrc" ]] && source "${HOME}/.rvmrc"
+ 
+ # Load RVM into a shell session *as a function*
+ # RVM home scripts completion
+-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
++[[ -r "${rvm_path}/scripts/completion" ]] && source "${rvm_path}/scripts/completion"
+ 
+ # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+-if [[ -d "${HOME}/.rvm/bin" ]]
+-then
+-  export PATH="$PATH:${HOME}/.rvm/bin"
+-fi
++[[ -d "${HOME}/.rvm/bin" ]] && export PATH="$PATH:${HOME}/.rvm/bin"
+ 
+ ## The next line updates PATH for the Google Cloud SDK.
+-#if [[ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc' ]]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc'; fi
++#if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc'; fi
+ #
+ ## The next line enables shell command completion for gcloud.
+-#if [[ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ]]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'; fi
++#if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'; fi
+ 
+ # Enable bashcompinit for pipx completions
+ autoload -U bashcompinit
+ bashcompinit
+-eval "$(register-python-argcomplete pipx)"
++has_cmd "pipx" && eval "$(register-python-argcomplete pipx)"
+ 
+ ########### Profiler ###########
+ if [[ "$PROFILE_STARTUP" == true ]]
+@@ -527,3 +495,4 @@ then
+   unsetopt xtrace
+   exec 2>&3 3>&-
+ fi
++

@@ -521,9 +521,10 @@ bashcompinit
 eval "$(register-python-argcomplete pipx)"
 
 ########### Profiler ###########
-if [[ "$PROFILE_STARTUP" == true ]]
-then
-  zprof
-  unsetopt xtrace
-  exec 2>&3 3>&-
-fi
+# if [[ "$PROFILE_STARTUP" == true ]]
+# then
+#   zprof
+#   unsetopt xtrace
+#   exec 2>&3 3>&-
+# fi
+
