@@ -26,6 +26,21 @@
 #   11. /etc/zlogout
 ########################################
 
+<<<<<<< Updated upstream
+=======
+########## Profiler ###########
+# Credit: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
+# PROFILE_STARTUP=true
+if [[ "$PROFILE_STARTUP" == true ]]
+then
+  zmodload zsh/zprof # Output load-time statistics
+  # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+  PS4=$"%D{%M%S%.} %N:%i> "
+  exec 4>&2 2>"${XDG_CACHE_HOME:-$HOME/temp}/zshrc_startup.$$"
+  setopt xtrace prompt_subst
+fi
+########################################
+>>>>>>> Stashed changes
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]
 then
@@ -123,10 +138,14 @@ HEROKU_AC_ZSH_SETUP_PATH=${HOME}/Library/Caches/heroku/autocomplete/zsh_setup &&
 test -r "${HOME}/.opam/opam-init/init.zsh" && . "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
 
 # pandoc completion
+<<<<<<< Updated upstream
 if has_cmd pandoc
 then
 	eval "$(pandoc --bash-completion)"
 fi
+=======
+#has_cmd "pandoc" && eval "$(pandoc --bash-completion)"
+>>>>>>> Stashed changes
 
 # pip zsh completion
 if has_cmd pip
@@ -212,10 +231,10 @@ fi
 #if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
 
 # Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [[ -f "/usr/local/etc/bash_completion.d/git-completion.bash" ]]
-then
-	compctl -o default -o nospace -F _git g
-fi
+# if type _git &> /dev/null && [[ -f "/usr/local/etc/bash_completion.d/git-completion.bash" ]]
+# then
+# 	compctl -o default -o nospace -F _git g
+# fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [[ -e "${HOME}/.ssh/config" ]] && compctl -o "default" -o "nospace" -W "$(grep "^Host" "${HOME}/.ssh/config" | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
@@ -521,10 +540,19 @@ bashcompinit
 eval "$(register-python-argcomplete pipx)"
 
 ########### Profiler ###########
+<<<<<<< Updated upstream
 # if [[ "$PROFILE_STARTUP" == true ]]
 # then
 #   zprof
 #   unsetopt xtrace
 #   exec 2>&3 3>&-
 # fi
+=======
+if [[ "$PROFILE_STARTUP" == true ]]
+then
+  zprof
+  unsetopt xtrace
+  exec 2>&4 4>&-
+fi
+>>>>>>> Stashed changes
 

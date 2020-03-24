@@ -28,16 +28,20 @@
 # General
 #
 # Set case-sensitivity for completion, history lookup, etc.
-zstyle ':prezto:*:*' case-sensitive 'yes'
+zstyle ':prezto:*:*' case-sensitive 'no'
 # Color output (auto set to 'no' on dumb terminals).
-zstyle ':prezto:*:*' color 'yes'
+zstyle ':prezto:*:*' color 'auto'
 # Add additional directories to load prezto modules from
+<<<<<<< Updated upstream
 zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins
 # zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins/prezto-contrib
 # zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins/wd
 # zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins/tmux-xpanes
 # zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins/vimman
 # zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins/zsh-completions
+=======
+# zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins
+>>>>>>> Stashed changes
 # Must be defined for zsh/complist
 #export ZLS_COLORS=true
 zmodload zsh/complist
@@ -64,14 +68,21 @@ zstyle ':prezto:load' pmodule \
   'python' \
   'syntax-highlighting' \
   'history-substring-search' \
-  'command-not-found' \
-  'alias-tips' \
   'clipboard' \
   'kubernetes' \
   'contrib-prompt' \
+<<<<<<< Updated upstream
   'prompt'
+=======
+  'prompt' \
+  'kubernetes' \
+  'tmux' \
+  'tmux-xpanes'
+>>>>>>> Stashed changes
 
 # Removed
+  # 'command-not-found' \
+  # 'alias-tips' \
 #  'zsh-better-npm-completion' \
 #  'zsh-nvm' \
 #  'homebrew' \
@@ -156,7 +167,7 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 # Auto switch the Python virtualenv on directory change.
 # zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
 # Automatically initialize virtualenvwrapper if pre-requisites are met.
-#zstyle ':prezto:module:python:virtualenv' initialize 'yes'
+# zstyle ':prezto:module:python:virtualenv' initialize 'yes'
 
 # Ruby
 #
@@ -213,9 +224,9 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 # Auto start a session when Zsh is launched in a SSH connection.
 #zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 # Integrate with iTerm2.
-#zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+# zstyle ':prezto:module:tmux:iterm' integrate 'yes'
 # Set the default session name:
-#zstyle ':prezto:module:tmux:session' name '0'
+# zstyle ':prezto:module:tmux:session' name '0'
 
 # Utility
 #
