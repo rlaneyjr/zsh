@@ -137,7 +137,5 @@ storage
 compile-cache
 dev
 
-# Any shell scripts located in the root are considered "Personal"
-# Please place all project related scripts in an appropriate directory
-./*.sh
-./*.bash
+plugins/**
+
