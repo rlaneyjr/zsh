@@ -25,12 +25,9 @@
 #   10. ~/.zlogout
 #   11. /etc/zlogout
 ########################################
-
-<<<<<<< Updated upstream
-=======
 ########## Profiler ###########
 # Credit: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
-# PROFILE_STARTUP=true
+PROFILE_STARTUP=false
 if [[ "$PROFILE_STARTUP" == true ]]
 then
   zmodload zsh/zprof # Output load-time statistics
@@ -40,7 +37,6 @@ then
   setopt xtrace prompt_subst
 fi
 ########################################
->>>>>>> Stashed changes
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]
 then
@@ -93,7 +89,7 @@ fi
 if has_cmd pyenv
 then
   export PYENV_ROOT="${HOME}/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
+  export PATH="${PYENV_ROOT}/bin:$PATH"
   # Pyenv auto-activation
   export PYENV_SHELL="$(which zsh)"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
@@ -138,14 +134,11 @@ HEROKU_AC_ZSH_SETUP_PATH=${HOME}/Library/Caches/heroku/autocomplete/zsh_setup &&
 test -r "${HOME}/.opam/opam-init/init.zsh" && . "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
 
 # pandoc completion
-<<<<<<< Updated upstream
 if has_cmd pandoc
 then
 	eval "$(pandoc --bash-completion)"
 fi
-=======
 #has_cmd "pandoc" && eval "$(pandoc --bash-completion)"
->>>>>>> Stashed changes
 
 # pip zsh completion
 if has_cmd pip
@@ -186,11 +179,6 @@ if has_cmd direnv
 then
 	eval "$(direnv hook zsh)"
 fi
-
-# Pyenv auto-activation
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-#if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # AWS-CLI completer
 # if [[ -f "/usr/local/bin/aws_completer" ]]
@@ -535,24 +523,15 @@ fi
 #if [[ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ]]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Enable bashcompinit for pipx completions
-autoload -U bashcompinit
-bashcompinit
-eval "$(register-python-argcomplete pipx)"
+# autoload -U bashcompinit
+# bashcompinit
+# eval "$(register-python-argcomplete pipx)"
 
 ########### Profiler ###########
-<<<<<<< Updated upstream
-# if [[ "$PROFILE_STARTUP" == true ]]
-# then
-#   zprof
-#   unsetopt xtrace
-#   exec 2>&3 3>&-
-# fi
-=======
 if [[ "$PROFILE_STARTUP" == true ]]
 then
   zprof
   unsetopt xtrace
   exec 2>&4 4>&-
 fi
->>>>>>> Stashed changes
 

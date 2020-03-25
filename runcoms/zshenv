@@ -27,18 +27,6 @@
 ########################################
 ########## Profiler ###########
 # Credit: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
-<<<<<<< Updated upstream
-
-# PROFILE_STARTUP=true
-# if [[ "$PROFILE_STARTUP" == true ]]
-# then
-#     zmodload zsh/zprof # Output load-time statistics
-#     # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
-#     PS4=$"%D{%M%S%.} %N:%i> "
-#     exec 3>&2 2>"${XDG_CACHE_HOME:-$HOME/temp}/zsh_startup.$$"
-#     setopt xtrace prompt_subst
-# fi
-=======
 export PROFILE_STARTUP=false
 if [[ "$PROFILE_STARTUP" == true ]]
 then
@@ -48,8 +36,6 @@ then
     exec 3>&2 2>"${XDG_CACHE_HOME:-$HOME/temp}/zshenv_startup.$$"
     setopt xtrace prompt_subst
 fi
->>>>>>> Stashed changes
-############################################################
 ########################################
 #            Load First                #
 ########################################
@@ -127,11 +113,11 @@ if [[ $OS == "mac" ]]
 then
   cdpath=(
     $HD
-    ${HD}/{bin,lib,scripts,temp,tmp}
-    ${HD}/{cheaters,repos,DB}
-    ${HD}/{Projects,Workshops,Documents,PycharmProjects}
+    ${HD}/{scripts,cheaters,repos,DB}
+    ${HD}/{Builds,Projects,Workshops,Documents,PycharmProjects}
     ${HD}/"Creative Cloud Files"
-    ${HD}/"Dropbox (Personal)"
+    ${HD}/"Dropbox"
+    ${HD}/"OneDrive - Internetwork Engineering"
     $cdpath
   )
   # Set the list of directories that Zsh searches for programs.
@@ -163,8 +149,8 @@ elif [[ $OS == "lin" ]]
 then
   cdpath=(
     $HD
-    ${HD}/{bin,lib,scripts,temp,tmp}
-    ${HD}/{Projects,Workshops,Documents}
+    ${HD}/{scripts,repos,DB}
+    ${HD}/{Builds,Projects,Workshops,Documents,PycharmProjects}
     $cdpath
   )
   # Set the list of directories that Zsh searches for programs.
@@ -341,17 +327,6 @@ then
   source "${HD}/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc"
 fi
 
-# The next line enables shell command completion for gcloud.
-<<<<<<< Updated upstream
-if [[ -f "${HD}/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc" ]]; then 
-  source "${HD}/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc"
-fi
-=======
-# if [[ -f "${HD}/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc" ]]; then
-#   source "${HD}/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc"
-# fi
->>>>>>> Stashed changes
-
 ############################################################
 # Cheats customizations
 #CHEATERS="${HD}/cheaters/cheaters"
@@ -387,7 +362,6 @@ export TASTE_API_KEY="322428-NetEngOn-CPK7XUTD"
 export PINBOARD_TOKEN="rlaney:765D69E427A843DCC53F"
 export PINBOARD_API_KEY="rlaney:765D69E427A843DCC53F"
 
-<<<<<<< Updated upstream
 ############################################################
 # If you need to have bzip2 first in your PATH run:
 # export PATH="/usr/local/opt/bzip2/bin:$PATH"
@@ -415,7 +389,6 @@ export PYTHON_CONFIGURE_OPTS="--enable-framework"
 # export AR="/usr/bin/ar"
 
 #export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-=======
 ########### Profiler ###########
 if [[ "$PROFILE_STARTUP" == true ]]
 then
@@ -423,5 +396,4 @@ then
   unsetopt xtrace
   exec 2>&3 3>&-
 fi
->>>>>>> Stashed changes
 
