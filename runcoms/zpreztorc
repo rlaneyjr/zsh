@@ -32,7 +32,7 @@
 # Color output (auto set to 'no' on dumb terminals).
 zstyle ':prezto:*:*' color 'yes'
 # Add additional directories to load prezto modules from
-#zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins/wd
+zstyle ':prezto:load' pmodule-dirs $HOME/.zsh/plugins
 # Must be defined for zsh/complist
 #export ZLS_COLORS=true
 zmodload zsh/complist
@@ -134,7 +134,8 @@ zstyle ':prezto:module:history-substring-search' globbing-flags ''
 #zstyle ':prezto:module:prompt' theme 'sorin'
 #zstyle ':prezto:module:prompt' theme 'belak'
 #zstyle ':prezto:module:contrib-prompt' theme 'spaceship'
-zstyle ':prezto:module:prompt' theme 'sorin_contrib'
+#zstyle ':prezto:module:prompt' theme 'sorin_contrib'
+zstyle ':prezto:module:prompt' theme 'paradox'
 #zstyle ':prezto:module:prompt' theme 'josh'
 #zstyle ':prezto:module:prompt' theme 'steeef'
 # Set the working directory prompt display length.
