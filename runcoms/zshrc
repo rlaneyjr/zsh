@@ -27,16 +27,16 @@
 ########################################
 
 # Source Prezto.
-# if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]
-# then
-#   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-# fi
+if [[ -s "${ZDOTDIR}/prezto/init.zsh" ]]
+then
+  source "${ZDOTDIR}/prezto/init.zsh"
+fi
 
 # Source My Prezto.
-if [[ -s "${HOME}/.zsh/plugins/prezto/init.zsh" ]]
-then
-  source "${HOME}/.zsh/plugins/prezto/init.zsh"
-fi
+# if [[ -s "${HOME}/.zsh/plugins/prezto/init.zsh" ]]
+# then
+#   source "${HOME}/.zsh/plugins/prezto/init.zsh"
+# fi
 
 # load custom executable functions
 if [ -f ${HOME}/.myshutils ]

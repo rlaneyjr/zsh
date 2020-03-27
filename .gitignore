@@ -154,3 +154,5 @@ plugins/wd/**
 plugins/zsh-completions/**
 plugins/zsh-python-prompt/**
 
+plugins/.z*
+
