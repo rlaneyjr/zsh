@@ -119,14 +119,14 @@ then
     $HD/{cheaters,repos,DB}
     $HD/{Projects,Workshops,Documents,PycharmProjects}
     $HD/"Creative Cloud Files"
-    $HD/"Dropbox (Personal)"
+    $HD/"Dropbox"
     $cdpath
   )
   # Set the list of directories that Zsh searches for programs.
   path=(
     /usr/local/opt/coreutils/libexec/gnubin
     /usr/local/{bin,sbin}
-    /Applications
+    /Applications/Wireshark.app/Contents/MacOS
     $HD/.go/bin
     $HD/.jenv/{bin,libexec}
     $HD/.local/bin
