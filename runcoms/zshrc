@@ -430,17 +430,6 @@ bindkey "^Q" tetris
 #    source /usr/local/etc/bash_completion.d/$f
 #done
 
-# aliases
-[[ -f ${HOME}/.aliases ]] && source ${HOME}/.aliases
-
-# New Fuzzy Finder from command line
-[ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
-# New Fuzzy Finder with my custom config
-[ -f ${HOME}/.fzf.local ] && source ${HOME}/.fzf.local
-
-# Load my private stuff
-[[ -f ${HOME}/.ssh/.private ]] && source ${HOME}/.ssh/.private
-
 # (eval):setopt:3: no such option: NO_warnnestedvar
 # fix: (eval):setopt:3: no such option: NO_warnnestedvar
 #_comp_options="${_comp_options/NO_warnnestedvar/}"
@@ -513,23 +502,39 @@ then
   export PATH="$PATH:${HOME}/.rvm/bin"
 fi
 
-## The next line updates PATH for the Google Cloud SDK.
-#if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc'; fi
-#
-## The next line enables shell command completion for gcloud.
-#if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'; fi
+# The next line updates PATH for the Google Cloud SDK.
+if [[ -f ${HOME}/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc ]]
+then
+  source ${HOME}/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc
+fi
+
+# The next line enables shell command completion for gcloud.
+if [[ -f ${HOME}/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc ]]
+then
+  source ${HOME}/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc
+fi
 
 # Enable bashcompinit for pipx completions
-autoload -U bashcompinit
-bashcompinit
-eval "$(register-python-argcomplete pipx)"
+# autoload -U bashcompinit
+# bashcompinit
+# eval $(register-python-argcomplete pipx)
+
+# aliases
+[[ -f ${HOME}/.aliases ]] && source ${HOME}/.aliases
+
+# New Fuzzy Finder from command line
+[ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
+# New Fuzzy Finder with my custom config
+[ -f ${HOME}/.fzf.local ] && source ${HOME}/.fzf.local
+
+# Load my private stuff
+[[ -f ${HOME}/.ssh/.private ]] && source ${HOME}/.ssh/.private
 
 ########### Profiler ###########
-if [[ "$PROFILE_STARTUP" == true ]]
+if [[ $PROFILE_STARTUP == true ]]
 then
   zprof
   unsetopt xtrace
   exec 2>&3 3>&-
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
