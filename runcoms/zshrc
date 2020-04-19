@@ -66,7 +66,7 @@ typeset -Ug PYTHONPATH
 
 [[ -d "${HOME}/lib" ]] && export PYTHONPATH="${HOME}/lib:$PYTHONPATH"
 # Needed before installing Python versions with pyenv for YouCompleteMe
-  #export PYTHON_CONFIGURE_OPTS="--enable-framework"
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
 
 if has_cmd virtualenv
 then
@@ -87,14 +87,12 @@ then
   # Pyenv auto-activation
   export PYENV_SHELL="$(which zsh)"
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-  #export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+  #export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV=1
   #eval "$(pyenv init -)"
   #eval "$(pyenv virtualenv-init -)"
   pyenv virtualenvwrapper_lazy
   #if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
   #export PYENV_DEBUG=1
-  # For pyenv install command tell pyenv to use brew installed programs and MacOS10.14.sdk
-  export PYTHON_CONFIGURE_OPTS='--enable-framework'
   # export CPPFLAGS='-I/usr/local/opt/zlib/include'
   # export CFLAGS='-O2 -I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include'
   # export LDFLAGS='-L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib'
@@ -214,7 +212,7 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
-if [[ $OS == 'mac' ]]
+if [[ $OS =~ mac ]]
 then
   compctl -W "NSGlobalDomain" defaults
   # Add `killall` tab completion for common apps
@@ -415,6 +413,38 @@ bindkey "^Q" tetris
 #    source /usr/local/etc/bash_completion.d/$f
 #done
 
+############################################################
+#source /usr/local/etc/bash_completion.d/*
+############################################################
+## Start rbenv
+#export PATH="${HOME}/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
+
+# Add rbenv to PATH for scripting.
+[[ -d "${HOME}/.rbenv/bin" ]] && export PATH="$PATH:${HOME}/.rbenv/bin" && eval "$(rbenv init -)"
+
+# Add RVM to PATH for scripting
+[[ -f "${HOME}/.rvmrc" ]] && source "${HOME}/.rvmrc"
+
+# Load RVM into a shell session *as a function*
+# RVM home scripts completion
+[[ -r "${rvm_path}/scripts/completion" ]] && source "${rvm_path}/scripts/completion"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+[[ -d "${HOME}/.rvm/bin" ]] && export PATH="$PATH:${HOME}/.rvm/bin"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [[ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc' ]]
+then
+  source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [[ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ]]
+then
+  source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'
+fi
+
 # aliases
 [[ -f "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
 
@@ -467,32 +497,6 @@ zstyle ':vimman:' expire 7
 # Note that if you change the zstyle settings, you should delete the cache file and restart zsh.
 # $ rm ~/.zcompcache/vimman
 # $ exec zsh
-
-############################################################
-#source /usr/local/etc/bash_completion.d/*
-############################################################
-## Start rbenv
-#export PATH="${HOME}/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
-
-# Add rbenv to PATH for scripting.
-[[ -d "${HOME}/.rbenv/bin" ]] && export PATH="$PATH:${HOME}/.rbenv/bin" && eval "$(rbenv init -)"
-
-# Add RVM to PATH for scripting
-[[ -f "${HOME}/.rvmrc" ]] && source "${HOME}/.rvmrc"
-
-# Load RVM into a shell session *as a function*
-# RVM home scripts completion
-[[ -r "${rvm_path}/scripts/completion" ]] && source "${rvm_path}/scripts/completion"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-[[ -d "${HOME}/.rvm/bin" ]] && export PATH="$PATH:${HOME}/.rvm/bin"
-
-## The next line updates PATH for the Google Cloud SDK.
-#if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc'; fi
-#
-## The next line enables shell command completion for gcloud.
-#if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Enable bashcompinit for pipx completions
 # autoload -U bashcompinit
