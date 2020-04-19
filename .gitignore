@@ -52,19 +52,17 @@ nbproject
 
 # NOT my repo directory for references:
 repo**
-
-# ZPLUG's gitignore file
 !repos/
 repos/**
+
+removed/**
 
 # Don't track plugins
 plugins/**
 # Keep the folders
 !plugins/prezto-contrib
 !plugins/prezto
-!plugins/tmux-xpanes
 !plugins/vimman
 !plugins/wd
-!plugins/zsh-completions
 !plugins/zsh-python-prompt
 
