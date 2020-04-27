@@ -137,22 +137,8 @@ storage
 compile-cache
 dev
 
-plugins-backup
-!plugins/prezto-contrib/
-!plugins/prezto/
-!plugins/tmux-xpanes/
-!plugins/vimman/
-!plugins/wd/
-!plugins/zsh-completions/
-!plugins/zsh-python-prompt/
+plugins/**
+!plugins
 
-plugins/prezto-contrib/**
-plugins/prezto/**
-plugins/tmux-xpanes/**
-plugins/vimman/**
-plugins/wd/**
-plugins/zsh-completions/**
-plugins/zsh-python-prompt/**
-
-plugins/.z*
+.z*
 

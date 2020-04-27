@@ -32,7 +32,7 @@
 # Color output (auto set to 'no' on dumb terminals).
 zstyle ':prezto:*:*' color 'yes'
 # Add additional directories to load prezto modules from
-zstyle ':prezto:load' pmodule-dirs ${ZDOTDIR}/prezto-contrib
+zstyle ':prezto:load' pmodule-dirs ${ZDOTDIR}/plugins/prezto-contrib
 # Must be defined for zsh/complist
 #export ZLS_COLORS=true
 zmodload zsh/complist

@@ -25,7 +25,7 @@
 #   10. ~/.zlogout
 #   11. /etc/zlogout
 ########################################
-export ZDOTDIR=${HOME}/.zsh/plugins
+export ZDOTDIR=${HOME}/.zsh
 ########## Profiler ###########
 # Credit: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
 
@@ -73,11 +73,11 @@ else echo "Unsupported OS!"
 fi
 
 # Stuff that needs to be loaded first due to dependencies.
-if [[ -n $SSH_CONNECTION ]]
+if [[ -z $SSH_CONNECTION ]]
 then
-  export TERM='xterm-256color'
-else
   export TERM='xterm-256color-italic'
+else
+  export TERM='xterm-256color'
 fi
 
 export ZSH_CUSTOM="${HD}/.zsh"
@@ -126,7 +126,7 @@ then
   path=(
     /usr/local/opt/coreutils/libexec/gnubin
     /usr/local/{bin,sbin}
-    /Applications/Wireshark.app/Contents/MacOS
+    /Applications
     $HD/.go/bin
     $HD/.jenv/{bin,libexec}
     $HD/.local/bin
