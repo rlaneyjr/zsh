@@ -59,10 +59,6 @@ removed/**
 
 # Don't track plugins
 plugins/**
-# Keep the folders
-!plugins/prezto-contrib
-!plugins/prezto
-!plugins/vimman
-!plugins/wd
-!plugins/zsh-python-prompt
+# Keep the folder
+!plugins
 
