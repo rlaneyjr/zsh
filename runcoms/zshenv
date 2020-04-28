@@ -73,7 +73,7 @@ else echo "Unsupported OS!"
 fi
 
 # Stuff that needs to be loaded first due to dependencies.
-if [[ -z $SSH_CONNECTION ]]
+if [[ -z $SSH_CONNECTION ]] || [[ $OS == "mac" ]]
 then
   export TERM='xterm-256color-italic'
 else
