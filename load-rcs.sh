@@ -12,10 +12,9 @@
 # bash_version:     5.0.11(1)-release
 # ==============================================================================
 
-ZDOTDIR=${HOME}/.zsh
 setopt EXTENDED_GLOB
 for rcfile in ${HOME}/.zsh/runcoms/*; do
-  ln -s "$rcfile" "${ZDOTDIR}/.${rcfile:t}"
+  ln -sf "$rcfile" "${HOME}/.${rcfile:t}"
 done
 
 #ln -s ${ZDOTDIR}/plugins/prezto-contrib ${ZDOTDIR}/plugins/prezto/contrib
