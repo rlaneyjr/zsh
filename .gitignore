@@ -124,7 +124,7 @@ repo**
 
 # ZPLUG's gitignore file
 !repos/
-repos/**
+repos/*
 
 # Directories potentially created on remote AFP share
 .AppleDB
@@ -137,8 +137,7 @@ storage
 compile-cache
 dev
 
-plugins/**
-!plugins
+/plugins/*
+!/plugins/.gitkeep
 
-.z*
 
