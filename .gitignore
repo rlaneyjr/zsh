@@ -137,16 +137,4 @@ storage
 compile-cache
 dev
 
-# /plugins/*
-# !/plugins/.gitkeep
-/plugins/prezto-contrib/*
-/plugins/prezto/*
-/plugins/vimman/*
-/plugins/wd/*
-/plugins/zsh-python-prompt/*
-!/plugins/prezto-contrib/.gitkeep
-!/plugins/prezto/.gitkeep
-!/plugins/vimman/.gitkeep
-!/plugins/wd/.gitkeep
-!/plugins/zsh-python-prompt/.gitkeep
 
