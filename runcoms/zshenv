@@ -118,8 +118,8 @@ then
     $HD/{bin,lib,scripts,temp,tmp}
     $HD/{cheaters,repos,DB}
     $HD/{Projects,Workshops,Documents,PycharmProjects}
-    $HD/"Creative Cloud Files"
-    $HD/"Dropbox"
+    "${HD}/Creative Cloud Files"
+    $HD/Dropbox
     $cdpath
   )
   # Set the list of directories that Zsh searches for programs.
