@@ -166,11 +166,12 @@ then
 	eval "$(jenv init -)"
 fi
 
+# Loaded with prezto-contrib
 # Initialize direnv the environment variables manager
-if has_cmd direnv
-then
-	eval "$(direnv hook zsh)"
-fi
+# if has_cmd direnv
+# then
+# 	eval "$(direnv hook zsh)"
+# fi
 
 # Pyenv auto-activation
 #eval "$(pyenv init -)"

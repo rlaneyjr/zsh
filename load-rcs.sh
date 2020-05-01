@@ -17,4 +17,7 @@ for rcfile in ${HOME}/.zsh/runcoms/*; do
   ln -sf "$rcfile" "${HOME}/.${rcfile:t}"
 done
 
-#ln -s ${ZDOTDIR}/plugins/prezto-contrib ${ZDOTDIR}/plugins/prezto/contrib
+ln -sf ${HOME}/plugins/prezto-contrib ${HOME}/plugins/prezto/contrib
+ln -sf ${HOME}/plugins/prezto ${HOME}/.zprezto
+
+exit 0

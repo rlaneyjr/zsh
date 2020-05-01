@@ -32,8 +32,8 @@ zstyle ':prezto:*:*' case-sensitive 'yes'
 # Color output (auto set to 'no' on dumb terminals).
 zstyle ':prezto:*:*' color 'yes'
 # Add additional directories to load prezto modules from
-zstyle ':prezto:load' pmodule-dirs ${ZSH_CUSTOM}/plugins/prezto-contrib
-zstyle ':prezto:load' pmodule-dirs ${ZSH_CUSTOM}/plugins
+# zstyle ':prezto:load' pmodule-dirs ${ZSH_CUSTOM}/plugins/prezto-contrib
+# zstyle ':prezto:load' pmodule-dirs ${ZSH_CUSTOM}/plugins
 # Must be defined for zsh/complist
 #export ZLS_COLORS=true
 zmodload zsh/complist
@@ -65,6 +65,8 @@ zstyle ':prezto:load' pmodule \
   'clipboard' \
   'kubernetes' \
   'contrib-prompt' \
+  'direnv' \
+  'tmux-xpanes' \
   'prompt'
 
 # Removed
