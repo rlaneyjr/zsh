@@ -166,6 +166,11 @@ then
 	eval "$(jenv init -)"
 fi
 
+if has_cmd brew && [[ $OS == "lin" ]]
+then
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+
 # Loaded with prezto-contrib
 # Initialize direnv the environment variables manager
 # if has_cmd direnv
@@ -521,9 +526,12 @@ fi
 #if [ -f '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/rlaney/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Enable bashcompinit for pipx completions
-autoload -U bashcompinit
-bashcompinit
-eval "$(register-python-argcomplete pipx)"
+if has_cmd pipx
+then
+  autoload -U bashcompinit
+  bashcompinit
+  eval "$(register-python-argcomplete pipx)"
+fi
 
 ########### Profiler ###########
 if [[ $PROFILE_STARTUP == true ]]

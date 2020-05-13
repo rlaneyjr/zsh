@@ -164,6 +164,7 @@ then
     $HD/.local/bin
     $HD/.jenv/{bin,libexec}
     $HD/bin
+    /home/linuxbrew/.linuxbrew/bin
     $path
   )
   # load our own completions (~/.zsh/completion)
