@@ -115,11 +115,7 @@ if [[ $OS == "mac" ]]
 then
   cdpath=(
     $HD
-    $HD/{bin,lib,scripts,temp,tmp}
-    $HD/{cheaters,repos,DB}
-    $HD/{Projects,Workshops,Documents,PycharmProjects}
-    "${HD}/Creative Cloud Files"
-    $HD/Dropbox
+    $HD/{Projects,Workshops,Builds,PycharmProjects}
     $cdpath
   )
   # Set the list of directories that Zsh searches for programs.
@@ -149,8 +145,7 @@ elif [[ $OS == "lin" ]]
 then
   cdpath=(
     $HD
-    $HD/{bin,lib,scripts,temp,tmp}
-    $HD/{Projects,Workshops,Documents}
+    $HD/{Projects,Workshops,Builds,PycharmProjects}
     $cdpath
   )
   # Set the list of directories that Zsh searches for programs.
