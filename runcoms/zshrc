@@ -546,6 +546,7 @@ fi
 if has_cmd thefuck
 then
   eval "$(thefuck --alias)"
+  # eval "$(thefuck --alias --enable-experimental-instant-mode)"
 fi
 
 ########### Profiler ###########
