@@ -79,13 +79,13 @@ then
   #export ENV_DIR=${HOME}/.virtualenvs
 fi
 
-if has_cmd virtualenvwrapper_lazy.sh
-then
-  source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
-elif has_cmd virtualenvwrapper.sh
-then
-  source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
-fi
+# if has_cmd virtualenvwrapper_lazy.sh
+# then
+#   source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
+# elif has_cmd virtualenvwrapper.sh
+# then
+#   source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
+# fi
 
 if has_cmd pyenv
 then
