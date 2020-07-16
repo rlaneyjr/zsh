@@ -113,11 +113,11 @@ typeset -gU cdpath fpath mailpath path manpath
 # Set the list of directories that cd searches.
 if [[ $OS == "mac" ]]
 then
-  cdpath=(
-    $HD
-    $HD/{Projects,Workshops,Builds,PycharmProjects}
-    $cdpath
-  )
+  # cdpath=(
+  #   $HD
+  #   $HD/{Projects,Workshops,Builds,PycharmProjects}
+  #   $cdpath
+  # )
   # Set the list of directories that Zsh searches for programs.
   path=(
     /usr/local/opt/coreutils/libexec/gnubin
@@ -143,11 +143,11 @@ then
   )
 elif [[ $OS == "lin" ]]
 then
-  cdpath=(
-    $HD
-    $HD/{Projects,Workshops,Builds,PycharmProjects}
-    $cdpath
-  )
+  # cdpath=(
+  #   $HD
+  #   $HD/{Projects,Workshops,Builds,PycharmProjects}
+  #   $cdpath
+  # )
   # Set the list of directories that Zsh searches for programs.
   path=(
     /bin
