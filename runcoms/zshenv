@@ -205,14 +205,14 @@ fi
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
-  #export LESS='-F -g -i -M -R -S -w -X -z-4'
-  export LESS='-g -i -M -R -S -w -z -4'
+#export LESS='-F -g -i -M -R -S -w -X -z-4'
+export LESS='-g -i -M -R -S -w -z -4'
 
 # Get color support for 'less'
-  # export LESS="--RAW-CONTROL-CHARS"
-  # export LESS='--ignore-case --raw-control-chars'
-    # Load LESS_TERMCAP color variables for less, man, etc., colorful
-      [[ -f $HD/.LESS_TERMCAP ]] && source $HD/.LESS_TERMCAP
+# export LESS="--RAW-CONTROL-CHARS"
+# export LESS='--ignore-case --raw-control-chars'
+# Load LESS_TERMCAP color variables for less, man, etc., colorful
+[[ -f "${HD}/.LESS_TERMCAP" ]] && source "${HD}/.LESS_TERMCAP"
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
@@ -242,7 +242,7 @@ fi
 export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
 
 # Must be defined for zsh/complist
-  export ZLS_COLORS=$LS_COLORS
+export ZLS_COLORS=$LS_COLORS
 
 # ranger --copy-config=all
 # Warning: Unable to set locale.  Expect encoding problems.
@@ -261,10 +261,10 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 
 ############################################################
 # Ensure go has it's GOROOT loaded
-if [[ -d $HD/.go ]] && [[ -z $GOPATH ]]
+if [[ -d "${HD}/.go" ]] && [[ -z $GOPATH ]]
 then
   typeset -gU GOPATH
-  export GOPATH="$HD/.go"
+  export GOPATH="${HD}/.go"
 fi
 #export GOBIN="$HD/.go/bin"
 ##export PATH="/usr/local/opt/go/libexec/bin:$PATH"
@@ -275,12 +275,12 @@ fi
 # Node Version Manager
 #Add the following to ~/.zshrc or your desired shell
 #configuration file:
-if [[ -d $HD/.nvm ]] && [[ -z $NVM_DIR ]]
+if [[ -d "${HD}/.nvm" ]] && [[ -z $NVM_DIR ]]
 then
   #export NVM_AUTO_USE_ACTIVE=true
-  export NVM_DIR="$HD/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+  export NVM_DIR="${HD}/.nvm"
+  [ -f "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -f "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 fi
 
 ############################################################
@@ -302,7 +302,7 @@ export NODE_REPL_MODE="sloppy"
 
 ############################################################
 # Atom Environment Variables:
-if [[ -d $HD/.atom ]]
+if [[ -d "${HD}/.atom" ]]
 then
   # The path from which Atom loads source code in dev mode.
   # Defaults to `~/github/atom`.
@@ -318,14 +318,15 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 ############################################################
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HD/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc' ]
+if [[ -f "${HD}/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc" ]]
 then
-  source '$HD/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc'
+  source "${HD}/Projects/Cloud/Google/google-cloud-sdk/path.zsh.inc"
 fi
 
 # The next line enables shell command completion for gcloud.
-if [[ -f "$HD/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc" ]]; then 
-  source "$HD/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc"
+if [[ -f "${HD}/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc" ]]
+then 
+  source "${HD}/Projects/Cloud/Google/google-cloud-sdk/completion.zsh.inc"
 fi
 
 ############################################################
@@ -382,8 +383,11 @@ export PINBOARD_API_KEY="rlaney:765D69E427A843DCC53F"
 # # For pkg-config to find zlib you may need to set:
 # export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 #
+# Needed before installing Python versions with pyenv for YouCompleteMe
+#export PYTHON_CONFIGURE_OPTS=--enable-framework
 # For pyenv install command tell pyenv to use brew installed programs and MacOS10.14.sdk
-[[ $OS == "mac" ]] && export PYTHON_CONFIGURE_OPTS='--enable-framework'
+[[ $OS == "mac" ]] && export PYTHON_CONFIGURE_OPTS="--enable-framework"
+[[ $OS == "lin" ]] && export PYTHON_CONFIGURE_OPTS="--enable-shared"
 # export CPPFLAGS='-I/usr/local/opt/zlib/include'
 # export CFLAGS='-O2 -I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include'
 # export LDFLAGS='-L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib'

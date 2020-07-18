@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 # -*- coding: utf-8 -*-
-# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=bash
+# vim: noai:et:tw=80:ts=2:ss=2:sts=2:sw=2:ft=zsh
 
 # name:             load-rcs.sh
 # description:      

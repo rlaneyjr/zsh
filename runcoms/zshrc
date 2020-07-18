@@ -27,25 +27,25 @@
 ########################################
 
 # Source Prezto.
-# if [[ -s ${ZDOTDIR}/plugins/prezto/init.zsh ]]
+# if [[ -s "${ZDOTDIR}/plugins/prezto/init.zsh" ]]
 # then
-#   source ${ZDOTDIR}/plugins/prezto/init.zsh
+#   source "${ZDOTDIR}/plugins/prezto/init.zs"h
 # fi
 
 # Source My Prezto.
-if [[ -s ${ZSH_CUSTOM}/plugins/prezto/init.zsh ]]
+if [[ -f "${ZSH_CUSTOM}/plugins/prezto/init.zsh" ]]
 then
-  source ${ZSH_CUSTOM}/plugins/prezto/init.zsh
+  source "${ZSH_CUSTOM}/plugins/prezto/init.zsh"
 fi
 
 # load custom executable functions
-if [ -f ${HOME}/.myshutils ]
+if [[ -f "${HOME}/.myshutils" ]]
 then
-  . ${HOME}/.myshutils
+  source "${HOME}/.myshutils"
 fi
-if [ -f ${HOME}/.myfuncts ]
+if [[ -f "${HOME}/.myfuncts" ]]
 then
-  . ${HOME}/.myfuncts
+  source "${HOME}/.myfuncts"
 fi
 
 ## load custom executable functions
@@ -63,20 +63,18 @@ fi
 export PYTHONIOENCODING=UTF-8
 typeset -Ug PYTHONPATH
 
-[[ -d ${HOME}/lib ]] && export PYTHONPATH=${HOME}/lib:$PYTHONPATH
-# Needed before installing Python versions with pyenv for YouCompleteMe
-  #export PYTHON_CONFIGURE_OPTS=--enable-framework
+[[ -d "${HOME}/lib" ]] && export PYTHONPATH="${HOME}/lib:$PYTHONPATH"
 
 if has_cmd virtualenv
 then
   # Virtual Environment
-  export WORKON_HOME=${HOME}/.virtualenvs
-  export PROJECT_HOME=${HOME}/Projects
+  export WORKON_HOME="${HOME}/.virtualenvs"
+  export PROJECT_HOME="${HOME}/Projects"
   #export VIRTUALENVWRAPPER_PYTHON="$PYENV_ROOT/shims/python"
   #source /usr/local/bin/virtualenvwrapper.sh
   export VIRTUAL_ENV_DISABLE_PROMPT=1
   # Directory to create environment for python3 -m venv
-  #export ENV_DIR=${HOME}/.virtualenvs
+  #export ENV_DIR="${HOME}/.virtualenvs"
 fi
 
 # if has_cmd virtualenvwrapper_lazy.sh
@@ -89,8 +87,8 @@ fi
 
 if has_cmd pyenv
 then
-  export PYENV_ROOT=${HOME}/.pyenv
-  export PATH=${PYENV_ROOT}/bin:$PATH
+  export PYENV_ROOT="${HOME}/.pyenv"
+  export PATH="${PYENV_ROOT}/bin:${PATH}"
   # Pyenv auto-activation
   export PYENV_SHELL=$(which zsh)
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
@@ -123,17 +121,17 @@ fi
 
 # Set iterm hostname prior to script to speed-up.
 ITERM2_HOSTNAME=${$(hostname)%%\.*}
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+[[ -f "${HOME}/.iterm2_shell_integration.zsh" ]] && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=${HOME}/Library/Caches/heroku/autocomplete/zsh_setup && \
+HEROKU_AC_ZSH_SETUP_PATH="${HOME}/Library/Caches/heroku/autocomplete/zsh_setup" && \
   test -f $HEROKU_AC_ZSH_SETUP_PATH && \
   source $HEROKU_AC_ZSH_SETUP_PATH
 
 # OPAM configuration
 # Otherwise, every time you want to access your opam installation, you will need to run: eval "$(opam env)"
-#. ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-test -r ${HOME}/.opam/opam-init/init.zsh && . ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+#. "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
+test -r "${HOME}/.opam/opam-init/init.zsh" && source "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
 
 # pandoc completion
 if has_cmd pandoc
@@ -237,14 +235,14 @@ then
 fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e ${HOME}/.ssh/config ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" ${HOME}/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
+[ -e "${HOME}/.ssh/config" ] && compctl -o "default" -o "nospace" -W "$(grep "^Host" "${HOME}/.ssh/config" | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh
 
 # Make zsh know about hosts already accessed by SSH
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,${HOME}/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
-if [[ $OS == 'mac' ]]
+if [[ $OS == "mac" ]]
 then
   compctl -W "NSGlobalDomain" defaults
   # Add `killall` tab completion for common apps
@@ -252,11 +250,11 @@ then
 fi
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
-export HISTSIZE='1000'
+export HISTSIZE="1000"
 export HISTFILESIZE=$HISTSIZE
 # Omit duplicates and commands that begin with a space from history.
-export HISTCONTROL='ignoreboth'
-HISTFILE=${HOME}/.zsh_history
+export HISTCONTROL="ignoreboth"
+HISTFILE="${HOME}/.zsh_history"
 DIRSTACKSIZE=5
 
 setopt complete_aliases
@@ -446,15 +444,15 @@ bindkey "^Q" tetris
 #done
 
 # aliases
-[[ -f ${HOME}/.aliases ]] && source ${HOME}/.aliases
+[[ -f "${HOME}/.aliases" ]] && source "${HOME}/.aliases"
 
 # New Fuzzy Finder from command line
-[ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
+[[ -f "${HOME}/.fzf.zsh" ]] && source "${HOME}/.fzf.zsh"
 # New Fuzzy Finder with my custom config
-[ -f ${HOME}/.fzf.local ] && source ${HOME}/.fzf.local
+[[ -f "${HOME}/.fzf.local" ]] && source "${HOME}/.fzf.local"
 
 # Load my private stuff
-[[ -f ${HOME}/.ssh/.private ]] && source ${HOME}/.ssh/.private
+[[ -f "${HOME}/.ssh/.private" ]] && source "${HOME}/.ssh/.private"
 
 # (eval):setopt:3: no such option: NO_warnnestedvar
 # fix: (eval):setopt:3: no such option: NO_warnnestedvar
@@ -481,19 +479,19 @@ bindkey "^Q" tetris
 # fi
 
 # Setup pyenv custom prompt "zsh-python-prompt"
-source ${ZSH_CUSTOM}/plugins/zsh-python-prompt/zshrc.zsh
-RPROMPT+='$ZSH_PYTHON_PROMPT'
+source "${ZSH_CUSTOM}/plugins/zsh-python-prompt/zshrc.zsh"
+RPROMPT+="$ZSH_PYTHON_PROMPT"
 setopt prompt_subst
-#zstyle ':zsh-python-prompt:pyenv:' expire_sec 30
-#zstyle ':zsh-python-prompt:pyenv:' symbol '⌘'
-zstyle ':zsh-python-prompt:pyenv:' symbol '🐍'
+#zstyle ":zsh-python-prompt:pyenv:" expire_sec 30
+#zstyle ":zsh-python-prompt:pyenv:" symbol "⌘"
+zstyle ":zsh-python-prompt:pyenv:" symbol "🐍"
 
 # Plugin to read Vim help files
-source ${ZSH_CUSTOM}/plugins/vimman/vimman.zsh
-zstyle ':completion:*' use-cache yes
-zstyle ':vimman:' dir ${HOME}/.vim/plugged
-zstyle ':vimman:' verbose yes
-zstyle ':vimman:' expire 7
+source "${ZSH_CUSTOM}/plugins/vimman/vimman.zsh"
+zstyle ":completion:*" use-cache yes
+zstyle ":vimman:" dir "${HOME}/.vim/plugged"
+zstyle ":vimman:" verbose yes
+zstyle ":vimman:" expire 7
 # Note that if you change the zstyle settings, you should delete the cache file and restart zsh.
 # $ rm ~/.zcompcache/vimman
 # $ exec zsh
@@ -502,30 +500,30 @@ zstyle ':vimman:' expire 7
 #source /usr/local/etc/bash_completion.d/*
 ############################################################
 ## Start rbenv
-#export PATH=${HOME}/.rbenv/bin:$PATH
+#export PATH="${HOME}/.rbenv/bin:$PATH"
 #eval $(rbenv init -)
 
 # Add rbenv to PATH for scripting.
-if [[ -d ${HOME}/.rbenv/bin ]]
+if [[ -d "${HOME}/.rbenv/bin" ]]
 then
-  export PATH=$PATH:${HOME}/.rbenv/bin
+  export PATH="$PATH:${HOME}/.rbenv/bin"
   eval "$(rbenv init -)"
 fi
 
 # Add RVM to PATH for scripting
-if [[ -f ${HOME}/.rvmrc ]]
+if [[ -f "${HOME}/.rvmrc" ]]
 then
-  source ${HOME}/.rvmrc
+  source "${HOME}/.rvmrc"
 fi
 
 # Load RVM into a shell session *as a function*
 # RVM home scripts completion
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+[[ -r "${rvm_path}/scripts/completion" ]] && source "${rvm_path}/scripts/completion"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-if [[ -d ${HOME}/.rvm/bin ]]
+if [[ -d "${HOME}/.rvm/bin" ]]
 then
-  export PATH=$PATH:${HOME}/.rvm/bin
+  export PATH="$PATH:${HOME}/.rvm/bin"
 fi
 
 ## The next line updates PATH for the Google Cloud SDK.
@@ -557,5 +555,3 @@ then
   exec 2>&3 3>&-
 fi
 
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
