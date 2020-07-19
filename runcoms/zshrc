@@ -480,8 +480,8 @@ bindkey "^Q" tetris
 
 # Setup pyenv custom prompt "zsh-python-prompt"
 source "${ZSH_CUSTOM}/plugins/zsh-python-prompt/zshrc.zsh"
-RPROMPT+="$ZSH_PYTHON_PROMPT"
-setopt prompt_subst
+RPROMPT+='$ZSH_PYTHON_PROMPT'
+setopt promptsubst
 #zstyle ":zsh-python-prompt:pyenv:" expire_sec 30
 #zstyle ":zsh-python-prompt:pyenv:" symbol "⌘"
 zstyle ":zsh-python-prompt:pyenv:" symbol "🐍"
