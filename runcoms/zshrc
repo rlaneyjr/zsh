@@ -93,7 +93,8 @@ then
   export PYENV_SHELL=$(which zsh)
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
   #export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV=true
-  eval "$(pyenv init -)"
+  # eval "$(pyenv init -)"
+  eval "$(pyenv init --path)"
   #eval "$(pyenv virtualenv-init -)"
   pyenv virtualenvwrapper_lazy
   #if which pyenv virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
@@ -162,10 +163,10 @@ then
 fi
 
 # Init npx completion
-if has_cmd npx
-then
-  source <(npx --shell-auto-fallback zsh)
-fi
+#if has_cmd npx
+#then
+#  source <(npx zsh)
+#fi
 
 # Initialize jenv Java Manager
 if has_cmd jenv
@@ -555,3 +556,5 @@ then
   exec 2>&3 3>&-
 fi
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
