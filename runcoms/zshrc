@@ -101,6 +101,13 @@ then
   #export PYENV_DEBUG=1
 fi
 
+if has_cmd poetry
+then
+  if [[ ! -f ~/.zsh/completion/_poetry ]]
+  then
+    poetry completions zsh > ~/.zsh/completion/_poetry
+  fi
+fi
 
 # Powerline setup
 #powerline-daemon -q

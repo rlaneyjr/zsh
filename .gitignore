@@ -137,4 +137,11 @@ storage
 compile-cache
 dev
 
+plugins/wd
+plugins/zsh-completions
+plugins/tmux-xpanes
+plugins/prezto
+plugins/zsh-python-prompt
+plugins/vimman
+plugins/prezto-contrib
 

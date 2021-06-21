@@ -306,7 +306,7 @@ fi
 
 ############################################################
 # User specified directories.  Can be overriden with local command.
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+[[ $OS == "mac" ]] && export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 ############################################################
 # The next line updates PATH for the Google Cloud SDK.
@@ -346,15 +346,6 @@ export CHEATCOLORS=true
 # Ansible Environment
 #export ANSIBLE_CONFIG=$HD/Projects/ansible.cfg
 #export ANSIBLE_LIBRARY=$HD/Projects/ansible-cisco-snmp/library
-
-############################################################
-# Tastedive.com API Access Key
-export TASTE_API_KEY="322428-NetEngOn-CPK7XUTD"
-
-############################################################
-# Pinboard.com API Access Key
-export PINBOARD_TOKEN="rlaney:765D69E427A843DCC53F"
-export PINBOARD_API_KEY="rlaney:765D69E427A843DCC53F"
 
 ############################################################
 # All commands have been installed with the prefix 'g'.
@@ -404,3 +395,11 @@ export PINBOARD_API_KEY="rlaney:765D69E427A843DCC53F"
 # export CFLAGS="-O2 -I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include"
 # export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib"
 # export AR="/usr/bin/ar"
+
+# Secrets
+secret_envs="${HD}/.private_envs"
+if [[ -f "$secret_envs" ]]
+then
+  source $secret_envs
+fi
+
